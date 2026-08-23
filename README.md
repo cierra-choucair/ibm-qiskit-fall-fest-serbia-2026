@@ -46,15 +46,29 @@ automatically:
 
 ## Logos
 
-- `assets/ibm-quantum-rev.svg` — the official IBM Quantum reversed
-  (white) logotype, converted from the supplied `.ai`. It is white-only,
-  so the page shows it on a dark chip, which is what reversed logos are
-  for.
-- `assets/universum-labs.svg` and `assets/cqt-serbia.svg` are **interim
-  stand-ins** drawn to match the real marks. Overwrite these two files
-  with the official exports (SVG or PNG at the same paths, updating the
-  `src` extension in `index.html` if PNG) and the site picks them up
-  with no other changes.
+`assets/ibm-quantum-rev.svg` is the official IBM Quantum reversed
+(white) logotype, converted from the supplied `.ai`. It is white-only,
+so the page shows it on a dark chip — that is what reversed logos are
+for.
+
+The **Universum Labs** and **CQT of Serbia** logos are not in the repo
+yet. The page has a commented-out slot for each one inside its partner
+card in `index.html`. To add a logo:
+
+1. Get the official file — SVG is best; otherwise a transparent-background
+   PNG at least ~600 px wide. (The page displays logos 48 px tall on a
+   white card, so white backgrounds also look fine.)
+2. On GitHub, open the `assets/` folder → **Add file → Upload files** →
+   drag the file in and commit to `main`. The filename must be exactly
+   `universum-labs.svg` or `cqt-serbia.svg` (or the `.png` equivalents)
+   — rename before uploading if needed.
+3. Open `index.html` on GitHub and click the pencil (Edit). Find the
+   comment reading `Official logo: upload the file to assets/ …` in the
+   matching partner card, delete the `<!--` and `-->` lines so the
+   `<img … />` line is live, and change `.svg` to `.png` in the `src`
+   if you uploaded a PNG. Commit to `main`.
+4. If the repo is connected to Vercel, the site redeploys automatically;
+   otherwise run `vercel deploy --prod`.
 
 ## Wire up email capture
 
@@ -82,8 +96,8 @@ Options:
 
 ## Content still to land
 
-- **Official logos** — replace the two interim files in `assets/` (see
-  "Logos" above).
+- **Official logos** — upload the Universum Labs and CQT of Serbia
+  files and uncomment their slots (see "Logos" above).
 - **Challenge tracks** — the three cards under *About the challenge* are
   candidate areas and labeled as such; swap in the final tracks when
   they're confirmed.
