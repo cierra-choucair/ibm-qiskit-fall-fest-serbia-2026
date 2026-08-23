@@ -73,16 +73,10 @@ reversed logotype `ibm-quantum-rev.svg`).
 
 ## Organizers
 
-Five organizer cards sit under the partner logos. Still to fill in
-(TODO comments mark both in `index.html`):
-
-- **LinkedIn URLs** — each name links to `#` until the real profile
-  URL is set on its `.team-name` anchor.
-- **Photos** — each card has a placeholder circle with initials;
-  replace the `.headshot` div with
-  `<img class="headshot" src="./assets/team/<file>.jpg" alt="" />`
-  after uploading photos to `assets/team/`. The CSS crops any image
-  into the same circle.
+Five organizer cards sit under the partner logos, each with a headshot
+(`assets/*_headshot.*`, cropped into a circle by the CSS) and a name
+linking to the person's LinkedIn profile. To change one, edit its
+`.team-card` in `index.html`.
 
 ## Wire up email capture
 
