@@ -17,9 +17,10 @@
   --text: #17102e;
   --dim: rgba(23, 16, 46, 0.7);
   --dimmer: rgba(23, 16, 46, 0.48);
-  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, monospace;
+  /* IBM Plex — the same family IBM Quantum uses */
+  --font-display: "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 * {
@@ -240,7 +241,7 @@ section {
   align-items: center;
   gap: 3rem;
   min-height: min(82svh, 860px);
-  padding-block: 4.5rem 3rem;
+  padding-block: 4.5rem;
 }
 
 .pill {
@@ -352,11 +353,11 @@ section:not(.hero) {
   padding-block: 5.5rem;
 }
 
+/* Tinted band — color, not lines, divides sections */
 .band {
-  border-block: 1px solid var(--line-soft);
   background:
-    radial-gradient(50% 60% at 85% 10%, rgba(124, 58, 237, 0.08), transparent 70%),
-    var(--bg-raised);
+    radial-gradient(50% 60% at 85% 10%, rgba(124, 58, 237, 0.1), transparent 70%),
+    #f1ecfb;
 }
 
 .eyebrow {
@@ -452,7 +453,6 @@ h2.centered {
   align-items: center;
   justify-content: center;
   gap: 3rem 4.5rem;
-  margin-top: 3.4rem;
 }
 
 .logo-link {
@@ -545,7 +545,7 @@ h2.centered {
   transition: color 0.15s ease;
 }
 
-.team-name::after {
+a.team-name::after {
   content: " ↗";
   font-size: 0.72em;
   color: var(--cyan);
@@ -679,6 +679,71 @@ h2.centered {
   font-size: 0.9rem;
   font-style: italic;
   color: var(--dimmer);
+}
+
+/* Sessions in the table link to their detail pages */
+.t-link {
+  color: var(--violet-deep);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(109, 40, 217, 0.3);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.t-link:hover {
+  color: var(--violet);
+  border-bottom-color: var(--violet);
+}
+
+/* ──────── Session detail page ──────── */
+
+.meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.meta-chip {
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.12);
+}
+
+.speakers-kicker {
+  margin-top: 3rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+}
+
+.speaker-note {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--dimmer);
+}
+
+.session-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.team-role {
+  margin-top: 0.15rem;
+  font-size: 0.82rem;
+  color: var(--dim);
 }
 
 .band-note {
@@ -1103,9 +1168,10 @@ fieldset.field {
 
 /* ──────── Footer ──────── */
 
+/* Dark footer bookends the page with the topbar and hero — no divider line */
 .footer {
-  border-top: 1px solid var(--line-soft);
-  padding-block: 2.4rem;
+  background: #0d071a;
+  padding-block: 2.6rem;
 }
 
 .footer-inner {
@@ -1114,7 +1180,7 @@ fieldset.field {
   justify-content: space-between;
   gap: 0.8rem;
   font-size: 0.82rem;
-  color: var(--dimmer);
+  color: rgba(244, 240, 255, 0.55);
 }
 
 .footer-tag {

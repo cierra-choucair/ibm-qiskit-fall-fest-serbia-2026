@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Session — Qiskit Fall Fest Serbia 2026</title>
+  <meta name="description" content="Session details from the Qiskit Fall Fest Serbia 2026 lecture day in Belgrade." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0A0514" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Ccircle%20cx='16'%20cy='16'%20r='13'%20fill='none'%20stroke='%238B5CF6'%20stroke-width='2'/%3E%3Cellipse%20cx='16'%20cy='16'%20rx='13'%20ry='5'%20fill='none'%20stroke='%238B5CF6'%20stroke-opacity='.55'/%3E%3Cline%20x1='16'%20y1='16'%20x2='24'%20y2='8'%20stroke='%2322D3EE'%20stroke-width='2'/%3E%3Ccircle%20cx='24'%20cy='8'%20r='2.5'%20fill='%2322D3EE'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand-logos" role="img" aria-label="Center for Quantum Technologies of Serbia, Universum Labs, and IBM Quantum">
+        <img class="brand-logo brand-cqt" src="./assets/logo-cqt-serbia-white.png" alt="" />
+        <img class="brand-logo brand-ul" src="./assets/logo-universum-labs-white.png" alt="" />
+        <img class="brand-logo brand-ibm" src="./assets/ibm-quantum-rev.svg" alt="" />
+      </div>
+      <nav class="topnav" aria-label="Page">
+        <a href="./index.html#program">Program</a>
+        <a href="./blog/index.html">Blog</a>
+        <a class="btn btn-primary btn-small" href="./index.html#register">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head" aria-label="Session">
+      <div class="wrap wrap-prose">
+        <p class="eyebrow"><a class="crumb" href="./index.html#program">← Full program</a></p>
+        <h1 id="session-title">Loading…</h1>
+        <div class="meta-chips" id="session-chips"></div>
+      </div>
+    </section>
+
+    <section aria-label="Session details">
+      <div class="wrap wrap-prose">
+        <article id="session-body" class="prose"></article>
+
+        <p class="speakers-kicker">Speakers</p>
+        <div id="session-speakers" class="team-grid" style="justify-content: flex-start;"></div>
+        <p class="speaker-note" id="speaker-note">Speakers for this session are announced at launch — the slot and its content are set.</p>
+
+        <div class="session-cta">
+          <a class="btn btn-primary" href="./index.html#register">Register for the lecture day</a>
+          <a class="crumb-dark" href="./index.html#program">← Back to the program</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>© 2026 Universum Labs · Center for Quantum Technologies of Serbia</p>
+      <p class="footer-tag">Part of the Qiskit Fall Fest, with IBM Quantum — built for Serbia&rsquo;s quantum community.</p>
+    </div>
+  </footer>
+
+  <script src="./sessions.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      var id = new URLSearchParams(location.search).get("id");
+      var session = (window.SESSIONS || []).filter(function (s) { return s.id === id; })[0];
+
+      var titleEl = document.getElementById("session-title");
+      var chipsEl = document.getElementById("session-chips");
+      var bodyEl = document.getElementById("session-body");
+      var speakersEl = document.getElementById("session-speakers");
+      var noteEl = document.getElementById("speaker-note");
+
+      if (!session) {
+        titleEl.textContent = "Session not found";
+        bodyEl.innerHTML = '<p>That session doesn’t exist (or moved). <a href="./index.html#program">Back to the program →</a></p>';
+        noteEl.hidden = true;
+        return;
+      }
+
+      document.title = session.title + " · Qiskit Fall Fest Serbia 2026";
+      titleEl.textContent = session.title;
+
+      ["Saturday 21 November 2026", session.time, "University of Belgrade"].forEach(function (text) {
+        var chip = document.createElement("span");
+        chip.className = "meta-chip";
+        chip.textContent = text;
+        chipsEl.appendChild(chip);
+      });
+
+      bodyEl.innerHTML = session.html;
+
+      var anyTba = false;
+      (session.speakers || []).forEach(function (sp) {
+        var card = document.createElement("div");
+        card.className = "team-card";
+
+        if (sp.photo) {
+          var img = document.createElement("img");
+          img.className = "headshot";
+          img.src = sp.photo;
+          img.alt = "";
+          card.appendChild(img);
+        } else {
+          var ph = document.createElement("div");
+          ph.className = "headshot";
+          ph.setAttribute("aria-hidden", "true");
+          ph.innerHTML = "<span>|ψ⟩</span>";
+          card.appendChild(ph);
+        }
+
+        if (sp.tba) {
+          anyTba = true;
+          var tbaName = document.createElement("p");
+          tbaName.className = "team-name";
+          tbaName.textContent = "Announced soon";
+          card.appendChild(tbaName);
+        } else if (sp.linkedin) {
+          var a = document.createElement("a");
+          a.className = "team-name";
+          a.href = sp.linkedin;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = sp.name;
+          card.appendChild(a);
+        } else {
+          var nm = document.createElement("p");
+          nm.className = "team-name";
+          nm.textContent = sp.name;
+          card.appendChild(nm);
+        }
+
+        if (sp.role) {
+          var role = document.createElement("p");
+          role.className = "team-role";
+          role.textContent = sp.role;
+          card.appendChild(role);
+        }
+        if (sp.org) {
+          var org = document.createElement("p");
+          org.className = "team-org";
+          org.textContent = sp.org;
+          card.appendChild(org);
+        }
+        speakersEl.appendChild(card);
+      });
+
+      noteEl.hidden = !anyTba;
+    })();
+  </script>
+</body>
+</html>

@@ -10,13 +10,27 @@ The repository root is the site — plain HTML/CSS/JS, no build step, no
 dependencies.
 
 ```
-index.html   page structure + all copy
-styles.css   design system (light theme, violet/cyan accents)
-script.js    animated Bloch sphere hero + registration form handler
-assets/      partner logos + organizer headshots
-blog/        the blog (see "Blog" below)
-vercel.json  clean URLs + asset caching for Vercel
+index.html    page structure + all copy
+styles.css    design system (IBM Plex, violet/cyan accents)
+script.js     animated Bloch sphere hero + registration form handler
+session.html  session detail page (renders sessions.js by ?id=…)
+sessions.js   per-session descriptions + speaker cards
+assets/       partner logos + organizer headshots
+blog/         the blog (see "Blog" below)
+vercel.json   clean URLs + asset caching for Vercel
 ```
+
+Type is set in IBM Plex Sans / IBM Plex Mono — the same family IBM
+Quantum uses — loaded from Google Fonts.
+
+## Sessions
+
+Real sessions in the program table (not breaks or logistics) link to
+`session.html?id=…`, which renders from `sessions.js`: description,
+time/venue chips, and speaker cards. Speakers are placeholders while
+unconfirmed — to confirm one, replace its `{ tba: true, … }` entry with
+`{ name, role, org, photo: "./assets/<file>", linkedin: "https://…" }`
+(photo and linkedin optional; cards match the organizer cards).
 
 ## Preview locally
 
