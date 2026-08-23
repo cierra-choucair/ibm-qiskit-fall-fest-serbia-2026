@@ -27,7 +27,7 @@ window.SESSIONS = [
         linkedin: "https://www.linkedin.com/in/sanja-djurdjic-mijin-b63b9b124",
       },
       {
-        name: "Cierra Lunde Choucair",
+        name: "Cierra Lunde",
         org: "Universum Labs",
         photo: "/assets/cierra_headshot.png",
         linkedin: "https://www.linkedin.com/in/cierra-lunde",
