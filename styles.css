@@ -139,13 +139,21 @@ section {
   -webkit-backdrop-filter: blur(12px);
 }
 
-.topbar .wordmark {
-  color: #f4f0ff;
+/* All three partner marks, white versions, in the menu bar */
+.brand-logos {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
 }
 
-.topbar .wordmark .times {
-  color: #a78bfa;
+.brand-logo {
+  display: block;
+  width: auto;
 }
+
+.brand-cqt { height: 34px; }
+.brand-ul  { height: 22px; }
+.brand-ibm { height: 17px; }
 
 .topbar-inner {
   display: flex;
@@ -153,18 +161,6 @@ section {
   justify-content: space-between;
   gap: 1rem;
   padding-block: 0.85rem;
-}
-
-.wordmark {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  white-space: nowrap;
-}
-
-.wordmark .times {
-  color: var(--violet);
 }
 
 .topnav {
@@ -480,6 +476,95 @@ h2.centered {
 .logo-ul  { height: clamp(54px, 7.4vw, 80px); }
 .logo-ibm { height: clamp(38px, 5vw, 54px); }
 
+/* Organizer cards under the partner logos */
+
+.team-kicker {
+  margin-top: 4.2rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.6rem;
+}
+
+.team-card {
+  width: 196px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  box-shadow: 0 10px 30px -14px rgba(76, 29, 149, 0.14);
+  padding: 1.4rem 1rem 1.3rem;
+  text-align: center;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(109, 40, 217, 0.45);
+  box-shadow: 0 18px 42px -16px rgba(76, 29, 149, 0.22);
+}
+
+/* Photo placeholder — swap the div for an <img class="headshot"> when
+   real photos land; the same rules crop it into the circle */
+.headshot {
+  width: 108px;
+  height: 108px;
+  margin: 0 auto 0.9rem;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.16), rgba(34, 211, 238, 0.14));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--violet-bright);
+}
+
+.team-name {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.team-name::after {
+  content: " ↗";
+  font-size: 0.72em;
+  color: var(--cyan);
+}
+
+.team-name:hover {
+  color: var(--violet-bright);
+}
+
+.team-org {
+  margin-top: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+}
+
 /* ──────── Program ──────── */
 
 .program-grid {
@@ -729,6 +814,20 @@ h2.centered {
 @media (max-width: 720px) {
   .topnav a:not(.btn) {
     display: none;
+  }
+
+  .brand-logos {
+    gap: 0.7rem;
+  }
+
+  .brand-cqt { height: 27px; }
+  .brand-ul  { height: 17px; }
+  .brand-ibm { height: 13px; }
+
+  .topbar .btn-small {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.62rem;
+    white-space: nowrap;
   }
 
   .signup-row {

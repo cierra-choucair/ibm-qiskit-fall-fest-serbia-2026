@@ -67,6 +67,23 @@ Display sizes are the `.logo-cqt` / `.logo-ul` / `.logo-ibm` heights in
 Center's website when it's live (marked with a TODO comment in
 `index.html`).
 
+The menu bar shows all three marks in white (`logo-*-white.png`,
+derived as monochrome knockouts for the dark bar, plus IBM's official
+reversed logotype `ibm-quantum-rev.svg`).
+
+## Organizers
+
+Five organizer cards sit under the partner logos. Still to fill in
+(TODO comments mark both in `index.html`):
+
+- **LinkedIn URLs** — each name links to `#` until the real profile
+  URL is set on its `.team-name` anchor.
+- **Photos** — each card has a placeholder circle with initials;
+  replace the `.headshot` div with
+  `<img class="headshot" src="./assets/team/<file>.jpg" alt="" />`
+  after uploading photos to `assets/team/`. The CSS crops any image
+  into the same circle.
+
 ## Wire up email capture
 
 The signup form posts to the URL in the form's `data-endpoint` attribute
