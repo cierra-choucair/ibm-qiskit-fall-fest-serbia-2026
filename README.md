@@ -12,8 +12,9 @@ dependencies.
 ```
 index.html   page structure + all copy
 styles.css   design system (light theme, violet/cyan accents)
-script.js    animated Bloch sphere hero + signup form handler
-assets/      partner logos (see "Logos" below)
+script.js    animated Bloch sphere hero + registration form handler
+assets/      partner logos + organizer headshots
+blog/        the blog (see "Blog" below)
 vercel.json  clean URLs + asset caching for Vercel
 ```
 
@@ -103,6 +104,21 @@ Submitted fields: `name`, `email`, `affiliation`, `status`,
 (present when ticked), `notes`. A `company` honeypot field exists in the
 markup but is stripped before sending; bot submissions that fill it are
 dropped client-side.
+
+## Blog
+
+`/blog/` lists posts; `/blog/post.html?slug=…` renders one. Content has
+two modes, switched in `blog/blog.js`:
+
+1. **Now (no CMS):** posts live in `blog/posts.js` as an array — slug,
+   title, date, excerpt, and HTML body. To publish, add an entry at the
+   top of the array and push; no build step.
+2. **Later (WordPress):** set `WP_API_URL` at the top of `blog/blog.js`
+   to the WordPress site's base URL (e.g. `https://cms.example.com`).
+   Both pages then fetch posts live from the WordPress REST API
+   (`/wp-json/wp/v2/posts`) — standard posts, no plugins needed — and
+   `posts.js` is ignored. Post bodies are lightly sanitized client-side
+   (scripts and inline handlers stripped) before rendering.
 
 ## Content still to land
 

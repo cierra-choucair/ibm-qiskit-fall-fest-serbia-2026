@@ -904,6 +904,203 @@ fieldset.field {
   color: var(--dimmer);
 }
 
+/* ──────── Blog ──────── */
+
+/* Dark page header band, matching the hero's palette */
+.page-head {
+  background:
+    radial-gradient(60% 80% at 12% -10%, rgba(124, 58, 237, 0.38), transparent 65%),
+    radial-gradient(45% 60% at 88% 0%, rgba(34, 211, 238, 0.1), transparent 70%),
+    linear-gradient(180deg, #10081f 0%, #0a0514 100%);
+}
+
+.page-head h1 {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #f4f0ff;
+  text-wrap: balance;
+}
+
+.page-head-lede {
+  margin-top: 1rem;
+  max-width: 38rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(244, 240, 255, 0.72);
+}
+
+.page-head .post-date {
+  margin-top: 1rem;
+  color: #22d3ee;
+}
+
+.crumb {
+  color: inherit;
+  text-decoration: none;
+}
+
+.crumb:hover {
+  color: #ffffff;
+}
+
+.crumb-dark {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--violet-bright);
+}
+
+.crumb-dark:hover {
+  color: var(--text);
+}
+
+.wrap-prose {
+  max-width: 46rem;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.4rem;
+}
+
+.post-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--violet-bright);
+}
+
+.post-card h2 {
+  margin-top: 0.7rem;
+  max-width: none;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.post-excerpt {
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--dim);
+}
+
+.post-more {
+  margin-top: 1.1rem;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.blog-empty {
+  grid-column: 1 / -1;
+  color: var(--dimmer);
+  font-style: italic;
+}
+
+.post-footer {
+  margin-top: 2.6rem;
+}
+
+/* Post body typography */
+.prose {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.prose > * + * {
+  margin-top: 1.1em;
+}
+
+.prose h2,
+.prose h3 {
+  margin-top: 1.9em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.prose h2 { font-size: 1.5rem; }
+.prose h3 { font-size: 1.2rem; }
+
+.prose a {
+  color: var(--violet-bright);
+  text-decoration: underline;
+  text-decoration-color: rgba(109, 40, 217, 0.35);
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--violet-bright);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4rem;
+}
+
+.prose li {
+  margin-top: 0.45em;
+}
+
+.prose li::marker {
+  color: var(--violet);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--violet);
+  padding-left: 1.2rem;
+  font-style: italic;
+  color: var(--dim);
+}
+
+.prose code {
+  background: rgba(124, 58, 237, 0.08);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  color: var(--violet-deep);
+}
+
+.prose pre {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #141022;
+  padding: 1.1rem 1.3rem;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  color: #c4b5fd;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
 /* ──────── Footer ──────── */
 
 .footer {
