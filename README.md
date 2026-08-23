@@ -88,12 +88,23 @@ The menu bar shows all three marks in white (`logo-*-white.png`,
 derived as monochrome knockouts for the dark bar, plus IBM's official
 reversed logotype `ibm-quantum-rev.svg`).
 
-## Organizers
+## People cards (organizers + speakers)
 
-Five organizer cards sit under the partner logos, each with a headshot
-(`assets/*_headshot.*`, cropped into a circle by the CSS) and a name
-linking to the person's LinkedIn profile. To change one, edit its
-`.team-card` in `index.html`.
+Person cards are one modular component, rendered by `people.js` and
+used for the organizers grid on the home page and the speaker cards on
+session pages. A person is a plain object:
+
+```js
+{ name: "Full Name", role: "Optional title", org: "Organization",
+  photo: "/assets/<file>", linkedin: "https://www.linkedin.com/in/…" }
+```
+
+`photo` and `linkedin` are optional — no photo renders the |ψ⟩
+placeholder circle, and when `linkedin` is set the **whole card** links
+to the profile. `{ tba: true, org: "…" }` renders an "Announced soon"
+card. The organizers live in the `ORGANIZERS` list in `people.js`;
+session speakers live on each session in `sessions.js`. Drop an object
+in either list and the card appears.
 
 ## Wire up registration
 

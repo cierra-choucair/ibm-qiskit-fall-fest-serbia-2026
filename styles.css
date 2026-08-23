@@ -561,7 +561,15 @@ h2.centered {
   transition: color 0.15s ease;
 }
 
-a.team-name::after {
+/* Whole-card LinkedIn link */
+.team-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.team-name::after,
+.team-card-link .team-name::after {
   content: " ↗";
   font-size: 0.72em;
   color: var(--cyan);

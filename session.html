@@ -66,6 +66,7 @@
     </div>
   </footer>
 
+  <script src="/people.js"></script>
   <script src="/sessions.js"></script>
   <script>
     (function () {
@@ -99,59 +100,11 @@
 
       bodyEl.innerHTML = session.html;
 
+      // Cards come from the shared renderer in /people.js
       var anyTba = false;
       (session.speakers || []).forEach(function (sp) {
-        var card = document.createElement("div");
-        card.className = "team-card";
-
-        if (sp.photo) {
-          var img = document.createElement("img");
-          img.className = "headshot";
-          img.src = sp.photo;
-          img.alt = "";
-          card.appendChild(img);
-        } else {
-          var ph = document.createElement("div");
-          ph.className = "headshot";
-          ph.setAttribute("aria-hidden", "true");
-          ph.innerHTML = "<span>|ψ⟩</span>";
-          card.appendChild(ph);
-        }
-
-        if (sp.tba) {
-          anyTba = true;
-          var tbaName = document.createElement("p");
-          tbaName.className = "team-name";
-          tbaName.textContent = "Announced soon";
-          card.appendChild(tbaName);
-        } else if (sp.linkedin) {
-          var a = document.createElement("a");
-          a.className = "team-name";
-          a.href = sp.linkedin;
-          a.target = "_blank";
-          a.rel = "noopener noreferrer";
-          a.textContent = sp.name;
-          card.appendChild(a);
-        } else {
-          var nm = document.createElement("p");
-          nm.className = "team-name";
-          nm.textContent = sp.name;
-          card.appendChild(nm);
-        }
-
-        if (sp.role) {
-          var role = document.createElement("p");
-          role.className = "team-role";
-          role.textContent = sp.role;
-          card.appendChild(role);
-        }
-        if (sp.org) {
-          var org = document.createElement("p");
-          org.className = "team-org";
-          org.textContent = sp.org;
-          card.appendChild(org);
-        }
-        speakersEl.appendChild(card);
+        if (sp.tba) anyTba = true;
+        speakersEl.appendChild(window.renderPersonCard(sp));
       });
 
       noteEl.hidden = !anyTba;

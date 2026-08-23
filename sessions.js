@@ -3,10 +3,12 @@
    Each entry: id (matches the link in the program table), time, title,
    lead (who runs it), html (description), speakers (cards).
 
-   Speakers: while unconfirmed, use { tba: true, org: "…" } — the page
-   renders a placeholder card. When confirmed, replace with
-   { name, role, org, photo: "./assets/<file>", linkedin: "https://…" }
-   (photo and linkedin optional).
+   Speakers use the shared person-card shape from people.js: while
+   unconfirmed, { tba: true, org: "…" } renders a placeholder card.
+   When confirmed, replace with
+   { name, role, org, photo: "/assets/<file>", linkedin: "https://…" }
+   (photo and linkedin optional; with linkedin set, the whole card
+   links to the profile).
    ──────────────────────────────────────────────────────────────────────── */
 
 window.SESSIONS = [
