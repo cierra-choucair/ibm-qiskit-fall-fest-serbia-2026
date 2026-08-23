@@ -69,69 +69,37 @@
         </div>
 
         <figure class="hero-viz">
-          <!-- Bloch sphere: static geometry in markup, state vector animated by script.js.
-               Projection: tilt 22°, azimuth −30°, R = 110. -->
-          <svg
-            id="bloch"
-            viewBox="-152 -152 304 304"
-            role="img"
-            aria-label="Animated Bloch sphere: the state vector of a qubit precessing between the north pole, state zero, and the south pole, state one"
-          >
+          <!-- Qiskit Fall Fest 2026 sticker — SVG recreation of the official
+               design. If the original file lands in assets/, swap this <svg>
+               for <img class="sticker" src="/assets/fall-fest-sticker.png" alt="…" /> -->
+          <svg class="sticker" viewBox="0 0 320 320" role="img" aria-label="Qiskit Fall Fest 2026 sticker">
             <defs>
-              <radialGradient id="sphereFill" cx="38%" cy="30%" r="75%">
-                <stop offset="0%" stop-color="rgba(139,92,246,0.16)" />
-                <stop offset="55%" stop-color="rgba(139,92,246,0.05)" />
-                <stop offset="100%" stop-color="rgba(139,92,246,0)" />
-              </radialGradient>
-              <linearGradient id="vecGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="77.8" y2="-42.1">
-                <stop offset="0%" stop-color="#8B5CF6" />
-                <stop offset="100%" stop-color="#22D3EE" />
-              </linearGradient>
-              <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
-                <feGaussianBlur stdDeviation="5" />
-              </filter>
+              <path id="arc-top" d="M 34 160 A 126 126 0 0 1 286 160" />
+              <path id="arc-bottom" d="M 20 160 A 140 140 0 0 0 300 160" />
             </defs>
-
-            <!-- Sphere body -->
-            <circle r="110" fill="url(#sphereFill)" stroke="rgba(244,240,255,0.28)" stroke-width="1.2" />
-            <!-- Latitudes -->
-            <ellipse rx="95.3" ry="35.7" cy="-51" fill="none" stroke="rgba(244,240,255,0.08)" />
-            <ellipse rx="95.3" ry="35.7" cy="51" fill="none" stroke="rgba(244,240,255,0.08)" />
-            <!-- Equator -->
-            <ellipse rx="110" ry="41.2" fill="none" stroke="rgba(139,92,246,0.5)" stroke-dasharray="3 4" />
-
-            <!-- Axes -->
-            <g stroke="rgba(244,240,255,0.22)" stroke-width="1">
-              <line x1="0" y1="117.3" x2="0" y2="-117.3" />
-              <line x1="0" y1="0" x2="109.6" y2="23.7" />
-              <line x1="0" y1="0" x2="63.2" y2="-41" />
+            <circle cx="160" cy="160" r="160" fill="#22262B" />
+            <!-- Wireframe globe with the node line -->
+            <g stroke="#F2639F" stroke-width="2.4" fill="none">
+              <circle cx="160" cy="160" r="56" />
+              <ellipse cx="160" cy="132" rx="48.5" ry="10" />
+              <ellipse cx="160" cy="160" rx="56" ry="14" />
+              <ellipse cx="160" cy="188" rx="48.5" ry="10" />
+              <line x1="136" y1="120" x2="187" y2="199" />
+              <circle cx="136" cy="120" r="7" fill="#22262B" />
+              <circle cx="187" cy="199" r="7" fill="#22262B" />
             </g>
-            <g class="axis-labels" fill="rgba(244,240,255,0.55)">
-              <text x="0" y="-126" text-anchor="middle">|0⟩</text>
-              <text x="0" y="138" text-anchor="middle">|1⟩</text>
-              <text x="118" y="31">x</text>
-              <text x="69" y="-46">y</text>
-            </g>
-
-            <!-- Trail of the state vector's tip -->
-            <polyline id="trail" points="" fill="none" stroke="#22D3EE" stroke-opacity="0.3" stroke-width="1.5" />
-
-            <!-- State vector + projections (updated each frame) -->
-            <g id="state">
-              <g stroke="rgba(34,211,238,0.5)" stroke-width="1" stroke-dasharray="2 4">
-                <line id="dropline" x1="77.8" y1="-42.1" x2="77.8" y2="16.8" />
-                <line id="floorline" x1="0" y1="0" x2="77.8" y2="16.8" />
-              </g>
-              <line id="vector" x1="0" y1="0" x2="77.8" y2="-42.1" stroke="url(#vecGrad)" stroke-width="2.5" stroke-linecap="round" />
-              <circle id="tipGlow" cx="77.8" cy="-42.1" r="9" fill="#22D3EE" opacity="0.55" filter="url(#softGlow)" />
-              <circle id="tip" cx="77.8" cy="-42.1" r="4.2" fill="#E8FCFF" stroke="#22D3EE" stroke-width="1.5" />
-              <text id="psi" class="psi-label" x="88" y="-50" fill="#22D3EE">|ψ⟩</text>
+            <!-- Ring type -->
+            <g fill="#F4F0FF" font-family="'IBM Plex Mono', monospace">
+              <text font-size="33" font-weight="500" letter-spacing="9">
+                <textPath href="#arc-top" startOffset="50%" text-anchor="middle">QISKIT</textPath>
+              </text>
+              <text font-size="33" font-weight="500" letter-spacing="9">
+                <textPath href="#arc-bottom" startOffset="50%" text-anchor="middle">FALL FEST</textPath>
+              </text>
+              <text x="36" y="167" font-size="19">2026</text>
+              <text x="284" y="167" font-size="19" text-anchor="end">2026</text>
             </g>
           </svg>
-          <figcaption class="readout">
-            <span class="mono">|ψ⟩ = cos(θ/2)|0⟩ + e<sup>iφ</sup>·sin(θ/2)|1⟩</span>
-            <span class="mono angles" id="angles">θ = 54.7° · φ = 0.0°</span>
-          </figcaption>
         </figure>
       </div>
     </section>
@@ -296,7 +264,7 @@
         <div class="track-grid">
           <article class="card track-card">
             <p class="track-number violet" aria-hidden="true">01</p>
-            <h3></h3>
+            <h3>Optimization</h3>
             <p>
               Quantum optimization for logistics and infrastructure —
               routing, scheduling, and allocation problems drawn from sectors
@@ -328,21 +296,6 @@
           Register below and you&rsquo;ll be the first to know when
           they&rsquo;re announced.
         </p>
-
-        <div class="facts">
-          <div class="fact">
-            <p class="fact-value">University of Belgrade</p>
-            <p class="fact-label">Venue</p>
-          </div>
-          <div class="fact">
-            <p class="fact-value">Qiskit</p>
-            <p class="fact-label">One framework, readily available resources</p>
-          </div>
-          <div class="fact">
-            <p class="fact-value">All Welcome</p>
-            <p class="fact-label">No quantum background required</p>
-          </div>
-        </div>
       </div>
     </section>
 

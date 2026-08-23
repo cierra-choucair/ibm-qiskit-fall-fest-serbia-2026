@@ -116,15 +116,13 @@ attribute in `index.html`:
 ```
 
 Until it's set, submitting shows an inline "not connected yet" notice.
-Options:
 
-1. **Formspree** (fastest) — create a form at formspree.io and paste its
-   URL: `data-endpoint="https://formspree.io/f/XXXXXXXX"`. The handler
-   sends `Accept: application/json` with a `multipart/form-data` body.
-2. **Any form backend** (Basin, Getform, Web3Forms, …) — same deal:
-   paste the POST URL.
-3. **Your own endpoint / Google Apps Script relay into a Sheet** —
-   anything that accepts a form POST and returns 2xx.
+**Recommended: the Google Sheet collector in
+[`registration-backend/`](registration-backend/README.md)** — a
+ready-to-paste Apps Script that lands every registration as a row in a
+team-owned Google Sheet (about 5 minutes to deploy, no accounts beyond
+Google). Formspree, Web3Forms, Basin, or any endpoint accepting a
+`multipart/form-data` POST also work.
 
 Submitted fields: `name`, `email`, `affiliation`, `status`,
 `experience`, `lecture_day` (present when ticked), `hackathon_application`

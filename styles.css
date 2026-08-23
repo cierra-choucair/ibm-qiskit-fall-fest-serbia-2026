@@ -319,43 +319,17 @@ section {
   color: var(--dimmer);
 }
 
-/* ──────── Bloch sphere ──────── */
+/* ──────── Fall Fest sticker ──────── */
 
 .hero-viz {
   text-align: center;
 }
 
-#bloch {
-  width: min(100%, 440px);
+.sticker {
+  width: min(100%, 400px);
   height: auto;
-  filter: drop-shadow(0 0 46px rgba(124, 58, 237, 0.32));
-}
-
-#bloch text {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-}
-
-#bloch .psi-label {
-  font-size: 14px;
-}
-
-.readout {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  margin-top: 0.8rem;
-  font-size: 0.78rem;
-  color: var(--dimmer);
-}
-
-.readout sup {
-  font-size: 0.62em;
-}
-
-.readout .angles {
-  color: var(--cyan);
-  font-variant-numeric: tabular-nums;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 20px 46px rgba(0, 0, 0, 0.5));
 }
 
 /* ──────── Sections ──────── */
@@ -816,40 +790,6 @@ a.team-name::after,
   color: var(--dimmer);
 }
 
-/* ──────── Facts ──────── */
-
-.facts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 3.4rem;
-}
-
-.fact {
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(124, 58, 237, 0.055);
-  padding: 1.5rem 1rem;
-  text-align: center;
-}
-
-.fact-value {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--violet-bright);
-}
-
-.fact-label {
-  margin-top: 0.4rem;
-  font-family: var(--font-display);
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--dimmer);
-}
-
 /* ──────── Signup ──────── */
 
 .updates {
@@ -1229,13 +1169,12 @@ fieldset.field {
     justify-content: center;
   }
 
-  #bloch {
-    width: min(78vw, 380px);
+  .sticker {
+    width: min(72vw, 340px);
   }
 
   .program-grid,
-  .track-grid,
-  .facts {
+  .track-grid {
     grid-template-columns: 1fr;
   }
 
