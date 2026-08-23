@@ -595,6 +595,92 @@ h2.centered {
   margin-top: 0.2rem;
 }
 
+/* ──────── Schedule table ──────── */
+
+.schedule {
+  margin-top: 3.2rem;
+}
+
+.schedule-kicker {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+}
+
+.table-wrap {
+  margin-top: 1.2rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: 0 10px 30px -14px rgba(76, 29, 149, 0.14);
+}
+
+.program-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.93rem;
+}
+
+.program-table th {
+  padding: 0.85rem 1.2rem;
+  font-family: var(--font-display);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  border-bottom: 1px solid var(--line);
+}
+
+.program-table td {
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid var(--line-soft);
+  vertical-align: top;
+}
+
+.program-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.t-time {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--violet-bright);
+}
+
+.t-lead {
+  font-size: 0.86rem;
+  color: var(--dim);
+}
+
+.t-tba {
+  font-style: italic;
+  color: var(--dimmer);
+}
+
+.t-break td {
+  background: rgba(124, 58, 237, 0.045);
+}
+
+.t-break td:not(.t-time) {
+  color: var(--dimmer);
+}
+
+.schedule-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--dimmer);
+}
+
 .band-note {
   margin-top: 2.2rem;
   max-width: 44rem;
@@ -682,7 +768,7 @@ h2.centered {
 }
 
 .signup {
-  max-width: 34rem;
+  max-width: 42rem;
   margin: 2.6rem auto 0;
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -703,30 +789,90 @@ h2.centered {
   color: var(--dim);
 }
 
-.signup-row {
-  display: flex;
-  gap: 0.8rem;
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem 1rem;
 }
 
-.signup input[type="email"] {
-  flex: 1;
-  min-width: 0;
+.field-wide {
+  grid-column: 1 / -1;
+}
+
+fieldset.field {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.signup input[type="text"],
+.signup input[type="email"],
+.signup select,
+.signup textarea {
+  width: 100%;
   border: 1px solid rgba(109, 40, 217, 0.3);
   border-radius: 10px;
   background: #ffffff;
-  padding: 0.95rem 1.1rem;
+  padding: 0.85rem 1rem;
   font-family: var(--font-body);
   font-size: 0.95rem;
   color: var(--text);
 }
 
-.signup input[type="email"]::placeholder {
+.signup select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236d28d9' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.4rem;
+}
+
+.signup select:invalid {
   color: var(--dimmer);
 }
 
-.signup input[type="email"]:focus {
+.signup textarea {
+  resize: vertical;
+}
+
+.signup ::placeholder {
+  color: var(--dimmer);
+}
+
+.signup input:focus,
+.signup select:focus,
+.signup textarea:focus {
   border-color: var(--violet);
   outline: none;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  font-size: 0.93rem;
+  color: var(--dim);
+  cursor: pointer;
+}
+
+.check input {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  accent-color: var(--violet);
+}
+
+.optional {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  color: var(--dimmer);
+}
+
+.btn-register {
+  width: 100%;
+  margin-top: 1.3rem;
 }
 
 .hp {
@@ -830,8 +976,8 @@ h2.centered {
     white-space: nowrap;
   }
 
-  .signup-row {
-    flex-direction: column;
+  .form-grid {
+    grid-template-columns: 1fr;
   }
 }
 

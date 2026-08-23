@@ -37,7 +37,7 @@
         <a href="#partners">Partners</a>
         <a href="#program">Program</a>
         <a href="#challenge">The Challenge</a>
-        <a class="btn btn-primary btn-small" href="#updates">Get updates</a>
+        <a class="btn btn-primary btn-small" href="#register">Register</a>
       </nav>
     </div>
   </header>
@@ -60,7 +60,7 @@
             open — secure your spot now.
           </p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="#updates">Register Now</a>
+            <a class="btn btn-primary" href="#register">Register Now</a>
             <a class="btn btn-ghost" href="#program">See the program</a>
           </div>
         </div>
@@ -206,12 +206,94 @@
               One day, small teams, three Serbia-relevant challenge tracks —
               everything built with Qiskit, one week after the lectures so
               you arrive ready. Places are limited to around 50 and selected
-              by application; the email list below gets the application
-              first.
+              by application — tick the hackathon box when you register
+              below.
             </p>
           </article>
         </div>
+
+        <div class="schedule">
+          <p class="schedule-kicker">Lecture day program · Saturday 21 November</p>
+          <div class="table-wrap">
+            <table class="program-table">
+              <thead>
+                <tr>
+                  <th scope="col">Time</th>
+                  <th scope="col">Session</th>
+                  <th scope="col">Led by</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="t-time">10:30–11:00</td>
+                  <td>Registration, coffee and environment desk</td>
+                  <td class="t-lead">Organizing team</td>
+                </tr>
+                <tr>
+                  <td class="t-time">11:00–11:20</td>
+                  <td>Welcome and Serbia&rsquo;s quantum opportunity</td>
+                  <td class="t-lead">Universum Labs + CQT Serbia</td>
+                </tr>
+                <tr>
+                  <td class="t-time">11:20–12:00</td>
+                  <td>From qubits and gates to small quantum algorithms</td>
+                  <td class="t-lead t-tba">Speaker announced soon</td>
+                </tr>
+                <tr>
+                  <td class="t-time">12:00–12:40</td>
+                  <td>Qiskit learning session</td>
+                  <td class="t-lead t-tba">Speaker announced soon</td>
+                </tr>
+                <tr>
+                  <td class="t-time">12:40–13:00</td>
+                  <td>Questions and synthesis</td>
+                  <td class="t-lead">Moderator</td>
+                </tr>
+                <tr class="t-break">
+                  <td class="t-time">13:00–14:00</td>
+                  <td>Lunch and networking</td>
+                  <td class="t-lead">All</td>
+                </tr>
+                <tr>
+                  <td class="t-time">14:00–14:50</td>
+                  <td>Qiskit 2.x: circuits, V2 primitives, transpilation and simulation</td>
+                  <td class="t-lead">IBM Qiskit instructor</td>
+                </tr>
+                <tr class="t-break">
+                  <td class="t-time">14:50–15:05</td>
+                  <td>Break</td>
+                  <td class="t-lead">—</td>
+                </tr>
+                <tr>
+                  <td class="t-time">15:05–16:20</td>
+                  <td>Guided lab: exact search and QAOA on a six-variable QUBO</td>
+                  <td class="t-lead">Technical instructors + mentors</td>
+                </tr>
+                <tr class="t-break">
+                  <td class="t-time">16:20–16:35</td>
+                  <td>Break and remote line check</td>
+                  <td class="t-lead">Production team</td>
+                </tr>
+                <tr>
+                  <td class="t-time">16:35–17:45</td>
+                  <td>Qiskit learning session</td>
+                  <td class="t-lead t-tba">Speaker announced soon</td>
+                </tr>
+                <tr>
+                  <td class="t-time">17:45–18:00</td>
+                  <td>Close and participant actions</td>
+                  <td class="t-lead">Organizing team</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+          <p class="schedule-note">
+            Speakers and session leads are confirmed at launch — the shape
+            of the day is set. The hackathon-day agenda follows with the
+            challenge tracks.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- ──────── ABOUT THE CHALLENGE ──────── -->
@@ -268,7 +350,7 @@
           The final challenge tracks are being selected now, guided by a
           structured review of which quantum use cases are technically
           ready, relevant to Serbia, and right-sized for a student weekend.
-          Sign up below and you&rsquo;ll be the first to know when
+          Register below and you&rsquo;ll be the first to know when
           they&rsquo;re announced.
         </p>
 
@@ -289,36 +371,74 @@
       </div>
     </section>
 
-    <!-- ──────── EMAIL CAPTURE ──────── -->
-    <section id="updates" class="band updates" aria-labelledby="updates-heading">
+    <!-- ──────── REGISTRATION ──────── -->
+    <section id="register" class="band updates" aria-labelledby="register-heading">
       <div class="wrap wrap-narrow">
-        <p class="eyebrow centered">Stay in the loop</p>
-        <h2 id="updates-heading" class="centered">Be first at the starting line.</h2>
+        <p class="eyebrow centered">Registration</p>
+        <h2 id="register-heading" class="centered">Save your seat.</h2>
         <p class="section-lede centered">
-          Hackathon places are limited and selected by application — and the
-          email list gets the application first. Challenge tracks, Fall Fest
-          registration, and venue details all land by email before
-          they&rsquo;re public. A handful of messages between now and
-          November — no noise.
+          Free and in person at the University of Belgrade. Register for the
+          lecture day on 21 November — and raise your hand for the hackathon
+          on 28 November, where places are limited and selected by
+          application.
         </p>
         <!-- Paste your form backend URL into data-endpoint (see README.md). -->
-        <form id="signup" class="signup" data-endpoint="" novalidate>
-          <label class="field-label" for="email">Email</label>
-          <div class="signup-row">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@university.rs"
-            />
-            <button class="btn btn-primary" type="submit">Keep me posted</button>
+        <form id="registration" class="signup" data-endpoint="">
+          <div class="form-grid">
+            <div class="field">
+              <label class="field-label" for="reg-name">Full name</label>
+              <input id="reg-name" name="name" type="text" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="reg-email">Email</label>
+              <input id="reg-email" name="email" type="email" required autocomplete="email" placeholder="you@university.rs" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="reg-affiliation">University / organization</label>
+              <input id="reg-affiliation" name="affiliation" type="text" required autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="reg-status">I am a&hellip;</label>
+              <select id="reg-status" name="status" required>
+                <option value="" selected disabled>Select one</option>
+                <option>Undergraduate student</option>
+                <option>Master&rsquo;s student</option>
+                <option>PhD student</option>
+                <option>Researcher / academic</option>
+                <option>Industry professional</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field field-wide">
+              <label class="field-label" for="reg-experience">Experience with quantum / Qiskit</label>
+              <select id="reg-experience" name="experience" required>
+                <option value="" selected disabled>Select one</option>
+                <option>New to quantum — starting from zero</option>
+                <option>Some exposure — courses, videos, or tutorials</option>
+                <option>Hands-on — I&rsquo;ve written Qiskit or similar code</option>
+              </select>
+            </div>
+            <fieldset class="field field-wide">
+              <legend class="field-label">Registering for</legend>
+              <label class="check">
+                <input type="checkbox" name="lecture_day" value="yes" checked />
+                Lecture day &middot; Saturday 21 November
+              </label>
+              <label class="check">
+                <input type="checkbox" name="hackathon_application" value="yes" />
+                Hackathon application &middot; Saturday 28 November (limited places)
+              </label>
+            </fieldset>
+            <div class="field field-wide">
+              <label class="field-label" for="reg-notes">Anything we should know? <span class="optional">Optional</span></label>
+              <textarea id="reg-notes" name="notes" rows="3" placeholder="Accessibility needs, dietary notes, questions&hellip;"></textarea>
+            </div>
           </div>
           <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button class="btn btn-primary btn-register" type="submit">Register</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
-        <p class="privacy">Your address is used for hackathon updates only.</p>
+        <p class="privacy">Your details are used for event organization only.</p>
       </div>
     </section>
   </main>

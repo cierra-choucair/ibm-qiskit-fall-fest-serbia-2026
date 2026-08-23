@@ -78,13 +78,13 @@ Five organizer cards sit under the partner logos, each with a headshot
 linking to the person's LinkedIn profile. To change one, edit its
 `.team-card` in `index.html`.
 
-## Wire up email capture
+## Wire up registration
 
-The signup form posts to the URL in the form's `data-endpoint` attribute
-in `index.html`:
+The registration form posts to the URL in the form's `data-endpoint`
+attribute in `index.html`:
 
 ```html
-<form id="signup" class="signup" data-endpoint="" novalidate>
+<form id="registration" class="signup" data-endpoint="">
 ```
 
 Until it's set, submitting shows an inline "not connected yet" notice.
@@ -92,15 +92,17 @@ Options:
 
 1. **Formspree** (fastest) — create a form at formspree.io and paste its
    URL: `data-endpoint="https://formspree.io/f/XXXXXXXX"`. The handler
-   already sends `Accept: application/json` and an `email` field.
+   sends `Accept: application/json` with a `multipart/form-data` body.
 2. **Any form backend** (Basin, Getform, Web3Forms, …) — same deal:
-   paste the POST URL. The request is `multipart/form-data` with a
-   single `email` field, plus a `company` honeypot field that is empty
-   for real submissions (most backends let you filter on it).
-3. **Newsletter tool** (beehiiv, Mailchimp, Buttondown, …) — either
-   point `data-endpoint` at a small serverless relay to the tool's
-   subscribe API, or replace the `<form>` block with the tool's embed
-   code.
+   paste the POST URL.
+3. **Your own endpoint / Google Apps Script relay into a Sheet** —
+   anything that accepts a form POST and returns 2xx.
+
+Submitted fields: `name`, `email`, `affiliation`, `status`,
+`experience`, `lecture_day` (present when ticked), `hackathon_application`
+(present when ticked), `notes`. A `company` honeypot field exists in the
+markup but is stripped before sending; bot submissions that fill it are
+dropped client-side.
 
 ## Content still to land
 

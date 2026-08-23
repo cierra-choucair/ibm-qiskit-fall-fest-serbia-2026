@@ -109,15 +109,17 @@
     requestAnimationFrame(frame);
   }
 
-  /* ──────── Email capture ────────
-     Posts to the endpoint configured on the form's data-endpoint
-     attribute (Formspree-compatible: FormData body, JSON accepted).
-     See README.md for wiring options. */
+  /* ──────── Registration form ────────
+     Posts every field to the endpoint configured on the form's
+     data-endpoint attribute (Formspree-compatible: FormData body, JSON
+     accepted). Native `required` validation runs before submit fires;
+     the day checkboxes are a group, so they are checked here. See
+     README.md for wiring options. */
 
-  var form = document.getElementById("signup");
+  var form = document.getElementById("registration");
   if (form) {
     var status = form.querySelector(".form-status");
-    var button = form.querySelector("button");
+    var button = form.querySelector("button[type=submit]");
 
     var setStatus = function (message, isError) {
       status.textContent = message;
@@ -127,15 +129,14 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      var email = form.email.value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        setStatus("That doesn't look like an email address — try again.", true);
+      if (!form.lecture_day.checked && !form.hackathon_application.checked) {
+        setStatus("Pick at least one: the lecture day, the hackathon application, or both.", true);
         return;
       }
 
       // Honeypot: bots fill the hidden field; humans never see it.
       if (form.company.value) {
-        setStatus("You're on the list. You'll hear from us the moment the launch is official.");
+        setStatus("You're registered. Watch your inbox for confirmation.");
         form.reset();
         return;
       }
@@ -143,7 +144,7 @@
       var endpoint = form.getAttribute("data-endpoint");
       if (!endpoint) {
         setStatus(
-          "Signups aren't connected to a backend yet — add your form endpoint to data-endpoint in index.html (see README).",
+          "Registration isn't connected to a backend yet — add your form endpoint to data-endpoint in index.html (see README).",
           true
         );
         return;
@@ -152,8 +153,8 @@
       button.disabled = true;
       setStatus("Sending…");
 
-      var body = new FormData();
-      body.set("email", email);
+      var body = new FormData(form);
+      body.delete("company");
 
       fetch(endpoint, {
         method: "POST",
@@ -162,7 +163,7 @@
       })
         .then(function (res) {
           if (res.ok) {
-            setStatus("You're on the list. You'll hear from us the moment the launch is official.");
+            setStatus("You're registered — see you in Belgrade. Watch your inbox for confirmation and event details.");
             form.reset();
           } else {
             setStatus("Something interfered. Try again in a moment.", true);
