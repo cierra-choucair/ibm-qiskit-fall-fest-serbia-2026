@@ -20,7 +20,7 @@ window.LOCAL_POSTS = [
       "<p>On <strong>Saturday 21 November</strong>, a full day of in-person instruction at the University of Belgrade: quantum foundations in the morning, hands-on Qiskit labs in the afternoon, with speakers from IBM Quantum and the Serbian quantum community. No quantum background required — the day is designed to take you from zero to running real circuits.</p>",
       "<p>On <strong>Saturday 28 November</strong>, Serbia's first applied quantum hackathon: one day, small teams, and challenge tracks built on real quantum use cases relevant to Serbia. Places are limited to around fifty and selected by application.</p>",
       "<p>The event is organized by the Center for Quantum Technologies of Serbia and Universum Labs, as part of the IBM Qiskit Fall Fest program.</p>",
-      "<p><a href=\"../index.html#register\">Registration is open</a> — the lecture day is free and open, and the same form lets you raise your hand for the hackathon. Challenge tracks, speakers, and the exact room are announced here and by email as they're confirmed.</p>",
+      "<p><a href=\"/#register\">Registration is open</a> — the lecture day is free and open, and the same form lets you raise your hand for the hackathon. Challenge tracks, speakers, and the exact room are announced here and by email as they're confirmed.</p>",
     ].join("\n"),
   },
   {
@@ -39,7 +39,7 @@ window.LOCAL_POSTS = [
       "</ul>",
       "<h2>What to aim for</h2>",
       "<p>If you can build a small circuit, run it on a simulator, and read the results, you're ahead of the curve — the guided lab on lecture day builds from there to optimization workloads like QAOA. And if none of those words mean anything yet: come anyway. The morning sessions assume nothing.</p>",
-      "<p>Questions before then? Use the notes field when you <a href=\"../index.html#register\">register</a> — we read everything.</p>",
+      "<p>Questions before then? Use the notes field when you <a href=\"/#register\">register</a> — we read everything.</p>",
     ].join("\n"),
   },
 ];

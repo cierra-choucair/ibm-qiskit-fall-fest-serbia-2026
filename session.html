@@ -14,22 +14,22 @@
     href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <a class="brand-link" href="./index.html" aria-label="Qiskit Fall Fest Serbia — home">
+      <a class="brand-link" href="/" aria-label="Qiskit Fall Fest Serbia — home">
         <span class="brand-logos" role="img" aria-label="Center for Quantum Technologies of Serbia, Universum Labs, and IBM Quantum">
-          <img class="brand-logo brand-cqt" src="./assets/logo-cqt-serbia-white.png" alt="" />
-          <img class="brand-logo brand-ul" src="./assets/logo-universum-labs-white.png" alt="" />
-          <img class="brand-logo brand-ibm" src="./assets/ibm-quantum-rev.svg" alt="" />
+          <img class="brand-logo brand-cqt" src="/assets/logo-cqt-serbia-white.png" alt="" />
+          <img class="brand-logo brand-ul" src="/assets/logo-universum-labs-white.png" alt="" />
+          <img class="brand-logo brand-ibm" src="/assets/ibm-quantum-rev.svg" alt="" />
         </span>
       </a>
       <nav class="topnav" aria-label="Page">
-        <a href="./index.html#program">Program</a>
-        <a href="./blog/index.html">Blog</a>
-        <a class="btn btn-primary btn-small" href="./index.html#register">Register</a>
+        <a href="/#program">Program</a>
+        <a href="/blog/">Blog</a>
+        <a class="btn btn-primary btn-small" href="/#register">Register</a>
       </nav>
     </div>
   </header>
@@ -37,7 +37,7 @@
   <main>
     <section class="page-head" aria-label="Session">
       <div class="wrap wrap-prose">
-        <p class="eyebrow"><a class="crumb" href="./index.html#program">← Full program</a></p>
+        <p class="eyebrow"><a class="crumb" href="/#program">← Full program</a></p>
         <h1 id="session-title">Loading…</h1>
         <div class="meta-chips" id="session-chips"></div>
       </div>
@@ -52,8 +52,8 @@
         <p class="speaker-note" id="speaker-note">Speakers for this session are announced at launch — the slot and its content are set.</p>
 
         <div class="session-cta">
-          <a class="btn btn-primary" href="./index.html#register">Register for the lecture day</a>
-          <a class="crumb-dark" href="./index.html#program">← Back to the program</a>
+          <a class="btn btn-primary" href="/#register">Register for the lecture day</a>
+          <a class="crumb-dark" href="/#program">← Back to the program</a>
         </div>
       </div>
     </section>
@@ -66,7 +66,7 @@
     </div>
   </footer>
 
-  <script src="./sessions.js"></script>
+  <script src="/sessions.js"></script>
   <script>
     (function () {
       "use strict";
@@ -82,7 +82,7 @@
 
       if (!session) {
         titleEl.textContent = "Session not found";
-        bodyEl.innerHTML = '<p>That session doesn’t exist (or moved). <a href="./index.html#program">Back to the program →</a></p>';
+        bodyEl.innerHTML = '<p>That session doesn’t exist (or moved). <a href="/#program">Back to the program →</a></p>';
         noteEl.hidden = true;
         return;
       }

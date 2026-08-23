@@ -34,10 +34,12 @@ unconfirmed — to confirm one, replace its `{ tba: true, … }` entry with
 
 ## Preview locally
 
-Open `index.html` in a browser, or serve the folder:
+Serve the folder (all internal paths are root-absolute, so opening
+`index.html` directly via `file://` won't resolve them):
 
 ```bash
 npx serve .
+# or: python3 -m http.server 8000
 ```
 
 ## Deploy

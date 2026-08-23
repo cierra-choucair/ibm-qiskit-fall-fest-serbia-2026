@@ -102,7 +102,7 @@
         posts.forEach(function (p) {
           var a = document.createElement("a");
           a.className = "card post-card";
-          a.href = "./post.html?slug=" + encodeURIComponent(p.slug);
+          a.href = "/blog/post.html?slug=" + encodeURIComponent(p.slug);
           var date = document.createElement("p");
           date.className = "post-date mono";
           date.textContent = formatDate(p.date);
@@ -135,7 +135,7 @@
       .then(function (post) {
         if (!post) {
           titleEl.textContent = "Post not found";
-          body.innerHTML = '<p>That post doesn’t exist (or moved). <a href="./index.html">Back to the blog →</a></p>';
+          body.innerHTML = '<p>That post doesn’t exist (or moved). <a href="/blog/">Back to the blog →</a></p>';
           return;
         }
         document.title = post.title + " · Qiskit Fall Fest Serbia 2026";
@@ -145,7 +145,7 @@
       })
       .catch(function () {
         titleEl.textContent = "Couldn’t load this post";
-        body.innerHTML = '<p>Try a refresh, or head <a href="./index.html">back to the blog →</a>.</p>';
+        body.innerHTML = '<p>Try a refresh, or head <a href="/blog/">back to the blog →</a>.</p>';
       });
   }
 })();
