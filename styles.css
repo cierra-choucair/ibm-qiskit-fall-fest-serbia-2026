@@ -69,8 +69,9 @@ section {
   font-family: var(--font-mono);
 }
 
+/* Gradient text — only used in the dark hero, so the bright variants */
 .grad {
-  background: linear-gradient(100deg, var(--violet), var(--cyan));
+  background: linear-gradient(100deg, #a78bfa, #22d3ee);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -128,14 +129,22 @@ section {
 
 /* ──────── Top bar ──────── */
 
+/* Dark to match the hero — the two read as one dark block at the top */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(251, 250, 255, 0.82);
+  background: rgba(13, 7, 26, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line-soft);
+}
+
+.topbar .wordmark {
+  color: #f4f0ff;
+}
+
+.topbar .wordmark .times {
+  color: #a78bfa;
 }
 
 .topbar-inner {
@@ -171,24 +180,62 @@ section {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--dim);
+  color: rgba(244, 240, 255, 0.68);
   transition: color 0.15s ease;
 }
 
 .topnav a:not(.btn):hover {
-  color: var(--violet-bright);
+  color: #ffffff;
 }
 
 /* ──────── Hero ──────── */
 
+/* Dark hero on a light page — the dark-to-light change is the divider,
+   so no border here */
 .hero {
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid var(--line-soft);
   background:
-    radial-gradient(60% 55% at 12% -5%, rgba(124, 58, 237, 0.14), transparent 65%),
-    radial-gradient(45% 45% at 88% 12%, rgba(6, 182, 212, 0.1), transparent 70%),
-    linear-gradient(180deg, var(--bg-raised) 0%, var(--bg) 100%);
+    radial-gradient(60% 55% at 12% -5%, rgba(124, 58, 237, 0.38), transparent 65%),
+    radial-gradient(45% 45% at 88% 12%, rgba(34, 211, 238, 0.12), transparent 70%),
+    linear-gradient(180deg, #10081f 0%, #0a0514 100%);
+}
+
+.hero h1 {
+  color: #f4f0ff;
+}
+
+.hero .lede {
+  color: rgba(244, 240, 255, 0.74);
+}
+
+.hero .microline,
+.hero .hero-footline {
+  color: rgba(244, 240, 255, 0.48);
+}
+
+.hero .pill {
+  color: #c4b5fd;
+  border-color: rgba(167, 139, 250, 0.42);
+  background: rgba(139, 92, 246, 0.14);
+}
+
+.hero .btn-ghost {
+  border-color: rgba(244, 240, 255, 0.35);
+  color: #f4f0ff;
+}
+
+.hero .btn-ghost:hover {
+  border-color: #a78bfa;
+  color: #c4b5fd;
+}
+
+.hero .readout {
+  color: rgba(244, 240, 255, 0.5);
+}
+
+.hero .readout .angles {
+  color: #22d3ee;
 }
 
 .hero-grid {
@@ -273,7 +320,7 @@ section {
 #bloch {
   width: min(100%, 440px);
   height: auto;
-  filter: drop-shadow(0 18px 40px rgba(124, 58, 237, 0.18));
+  filter: drop-shadow(0 0 46px rgba(124, 58, 237, 0.32));
 }
 
 #bloch text {
