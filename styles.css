@@ -401,40 +401,37 @@ h2.centered {
   text-transform: uppercase;
 }
 
-.partner-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.4rem;
-  margin-top: 2.6rem;
+/* Partner logo row — three logos, side by side, each linking out */
+
+.logo-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem 4.5rem;
+  margin-top: 3.4rem;
 }
 
-.partner-grid-3 {
-  grid-template-columns: repeat(3, 1fr);
+.logo-link {
+  display: inline-flex;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
-.partner-logo {
+.logo-link:hover {
+  opacity: 0.75;
+  transform: translateY(-3px);
+}
+
+.logo-img {
   display: block;
-  height: 48px;
   width: auto;
   max-width: 100%;
-  object-fit: contain;
-  margin-bottom: 1.2rem;
 }
 
-.partner-logo-chip {
-  display: inline-flex;
-  align-items: center;
-  background: #161616;
-  border-radius: 10px;
-  padding: 9px 16px;
-  margin-bottom: 1.2rem;
-}
-
-.partner-logo-dark {
-  display: block;
-  height: 30px;
-  width: auto;
-}
+/* Heights tuned per logo so the three read at similar visual weight */
+.logo-cqt { height: clamp(110px, 15vw, 168px); }
+.logo-ul  { height: clamp(54px, 7.4vw, 80px); }
+.logo-ibm { height: clamp(38px, 5vw, 54px); }
 
 /* ──────── Program ──────── */
 
@@ -671,12 +668,14 @@ h2.centered {
     width: min(78vw, 380px);
   }
 
-  .partner-grid,
-  .partner-grid-3,
   .program-grid,
   .track-grid,
   .facts {
     grid-template-columns: 1fr;
+  }
+
+  .logo-row {
+    gap: 2.2rem 3rem;
   }
 }
 

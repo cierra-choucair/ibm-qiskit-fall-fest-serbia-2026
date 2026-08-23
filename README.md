@@ -46,29 +46,26 @@ automatically:
 
 ## Logos
 
-`assets/ibm-quantum-rev.svg` is the official IBM Quantum reversed
-(white) logotype, converted from the supplied `.ai`. It is white-only,
-so the page shows it on a dark chip — that is what reversed logos are
-for.
+The partnership section is a row of three large logos, each linking to
+the organization's site. The originals as supplied are kept untouched in
+`assets/` (`ul_full_logo_v3.png`, `quantum_center_logo_final.png`,
+`IBM_Quantum_logotype_pos_RGB.png` + `.ai`, `ibm-quantum-rev.svg`). The
+page displays derived copies generated from them:
 
-The **Universum Labs** and **CQT of Serbia** logos are not in the repo
-yet. The page has a commented-out slot for each one inside its partner
-card in `index.html`. To add a logo:
+- `logo-universum-labs.png`, `logo-ibm-quantum.png` — trimmed of their
+  large transparent margins so they render at full size instead of tiny.
+- `logo-cqt-serbia.png` — the caption text recolored from white to the
+  logo's own navy so it is legible on the white page.
 
-1. Get the official file — SVG is best; otherwise a transparent-background
-   PNG at least ~600 px wide. (The page displays logos 48 px tall on a
-   white card, so white backgrounds also look fine.)
-2. On GitHub, open the `assets/` folder → **Add file → Upload files** →
-   drag the file in and commit to `main`. The filename must be exactly
-   `universum-labs.svg` or `cqt-serbia.svg` (or the `.png` equivalents)
-   — rename before uploading if needed.
-3. Open `index.html` on GitHub and click the pencil (Edit). Find the
-   comment reading `Official logo: upload the file to assets/ …` in the
-   matching partner card, delete the `<!--` and `-->` lines so the
-   `<img … />` line is live, and change `.svg` to `.png` in the `src`
-   if you uploaded a PNG. Commit to `main`.
-4. If the repo is connected to Vercel, the site redeploys automatically;
-   otherwise run `vercel deploy --prod`.
+To swap a logo, replace its derived `logo-*.png` file (trim the
+transparent padding first, or it will render small again). To change a
+link, edit the `href` on the matching `.logo-link` in `index.html`.
+Display sizes are the `.logo-cqt` / `.logo-ul` / `.logo-ibm` heights in
+`styles.css`.
+
+**The Center's link is currently a placeholder (`#`)** — point it at the
+Center's website when it's live (marked with a TODO comment in
+`index.html`).
 
 ## Wire up email capture
 
@@ -96,8 +93,8 @@ Options:
 
 ## Content still to land
 
-- **Official logos** — upload the Universum Labs and CQT of Serbia
-  files and uncomment their slots (see "Logos" above).
+- **The Center's website link** — the CQT logo currently links to `#`;
+  set the real URL when the Center's site is live (see "Logos" above).
 - **Challenge tracks** — the three cards under *About the challenge* are
   candidate areas and labeled as such; swap in the final tracks when
   they're confirmed.
