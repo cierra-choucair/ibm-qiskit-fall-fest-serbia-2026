@@ -325,8 +325,9 @@ section {
   text-align: center;
 }
 
+/* Displayed at the PNG's native size so it stays crisp */
 .sticker {
-  width: min(100%, 400px);
+  width: min(100%, 340px);
   height: auto;
   transform: rotate(-8deg);
   filter: drop-shadow(0 20px 46px rgba(0, 0, 0, 0.5));
