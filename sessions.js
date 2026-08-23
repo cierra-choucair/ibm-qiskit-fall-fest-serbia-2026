@@ -20,8 +20,18 @@ window.SESSIONS = [
       "<p>You’ll also hear how the lecture day connects to the hackathon on 28 November: what the challenge tracks reward, how the application works, and what to practice in the week between.</p>",
     ].join("\n"),
     speakers: [
-      { tba: true, org: "Universum Labs" },
-      { tba: true, org: "CQT Serbia" },
+      {
+        name: "Sanja Djurdjic Mijin",
+        org: "CQT Serbia",
+        photo: "/assets/sanja_headshot.png",
+        linkedin: "https://www.linkedin.com/in/sanja-djurdjic-mijin-b63b9b124",
+      },
+      {
+        name: "Cierra Lunde Choucair",
+        org: "Universum Labs",
+        photo: "/assets/cierra_headshot.png",
+        linkedin: "https://www.linkedin.com/in/cierra-lunde",
+      },
     ],
   },
   {
