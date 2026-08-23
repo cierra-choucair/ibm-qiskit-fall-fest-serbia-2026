@@ -28,11 +28,13 @@
 <body>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <div class="brand-logos" role="img" aria-label="Center for Quantum Technologies of Serbia, Universum Labs, and IBM Quantum">
-        <img class="brand-logo brand-cqt" src="./assets/logo-cqt-serbia-white.png" alt="" />
-        <img class="brand-logo brand-ul" src="./assets/logo-universum-labs-white.png" alt="" />
-        <img class="brand-logo brand-ibm" src="./assets/ibm-quantum-rev.svg" alt="" />
-      </div>
+      <a class="brand-link" href="./index.html" aria-label="Qiskit Fall Fest Serbia — home">
+        <span class="brand-logos" role="img" aria-label="Center for Quantum Technologies of Serbia, Universum Labs, and IBM Quantum">
+          <img class="brand-logo brand-cqt" src="./assets/logo-cqt-serbia-white.png" alt="" />
+          <img class="brand-logo brand-ul" src="./assets/logo-universum-labs-white.png" alt="" />
+          <img class="brand-logo brand-ibm" src="./assets/ibm-quantum-rev.svg" alt="" />
+        </span>
+      </a>
       <nav class="topnav" aria-label="Page">
         <a href="#partners">Partners</a>
         <a href="#program">Program</a>
@@ -137,7 +139,9 @@
     <!-- ──────── THE PARTNERS — three logos, linked ──────── -->
     <section id="partners" aria-labelledby="partners-heading">
       <div class="wrap">
-        <div class="logo-row">
+        <p class="eyebrow centered">The team behind it</p>
+        <h2 id="partners-heading" class="centered">Partners &amp; organizers</h2>
+        <div class="logo-row logo-row-spaced">
           <!-- TODO: point this at the Center's website once it's live -->
           <a class="logo-link" href="#" aria-label="Center for Quantum Technologies of Serbia">
             <img class="logo-img logo-cqt" src="./assets/logo-cqt-serbia.png" alt="Center for Quantum Technologies of Serbia" />

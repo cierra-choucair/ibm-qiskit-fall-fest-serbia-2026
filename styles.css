@@ -140,7 +140,18 @@ section {
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* All three partner marks, white versions, in the menu bar */
+/* All three partner marks, white versions, in the menu bar — the whole
+   cluster links back to the home page */
+.brand-link {
+  display: inline-flex;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.brand-link:hover {
+  opacity: 0.8;
+}
+
 .brand-logos {
   display: flex;
   align-items: center;
@@ -453,6 +464,11 @@ h2.centered {
   align-items: center;
   justify-content: center;
   gap: 3rem 4.5rem;
+}
+
+/* When the section heading is present above the logo row */
+.logo-row-spaced {
+  margin-top: 3rem;
 }
 
 .logo-link {
