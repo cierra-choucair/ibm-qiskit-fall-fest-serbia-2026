@@ -456,6 +456,14 @@ h2.centered {
   transform: translateY(-3px);
 }
 
+/* A partner without a website yet — same slot, no link affordance */
+.logo-static,
+.logo-static:hover {
+  opacity: 1;
+  transform: none;
+  cursor: default;
+}
+
 .logo-img {
   display: block;
   width: auto;

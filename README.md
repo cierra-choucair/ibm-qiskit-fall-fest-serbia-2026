@@ -145,6 +145,30 @@ two modes, switched in `blog/blog.js`:
    `posts.js` is ignored. Post bodies are lightly sanitized client-side
    (scripts and inline handlers stripped) before rendering.
 
+## Going live
+
+Done for launch: `robots.txt` (crawlable), a branded `404.html`, a
+1200×630 social card at `assets/og-card.png` wired into every page's
+Open Graph tags, and search-engine indexing enabled on session and blog
+pages.
+
+**One step still needs the custom domain.** Until it's filled in, Google
+may index the `*.vercel.app` copy instead of the real site. With the
+domain (call it `https://example.com`):
+
+1. Add to every page's `<head>`, matching each page's own URL:
+   `<link rel="canonical" href="https://example.com/" />` plus
+   `<meta property="og:url" content="https://example.com/" />`.
+2. Swap the `og:image` host on all four pages (`index.html`,
+   `session.html`, `blog/index.html`, `blog/post.html`) from the
+   interim `ibm-qiskit-fall-fest-serbia.vercel.app` to the domain.
+   Each is marked with an "Interim host" comment.
+3. Uncomment the `Sitemap:` line in `robots.txt` and add a
+   `sitemap.xml` listing `/`, `/blog/`, the blog posts, and the six
+   `/session.html?id=…` pages.
+4. In Vercel → Settings → Domains, set the custom domain as
+   **primary** so the `.vercel.app` URL redirects to it.
+
 ## Content still to land
 
 - **The Center's website link** — the CQT logo currently links to `#`;
