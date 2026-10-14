@@ -36,6 +36,9 @@
       <nav class="topnav" aria-label="Page">
         <a href="/#program">Program</a>
         <a href="/blog/">Blog</a>
+        <button class="lang-toggle" type="button" data-no-i18n aria-label="Switch to Serbian">
+          <span data-lang="en" class="is-active">EN</span><span class="lang-sep" aria-hidden="true">/</span><span data-lang="sr">SR</span>
+        </button>
         <a class="btn btn-primary btn-small" href="/#register">Register</a>
       </nav>
     </div>
@@ -95,6 +98,7 @@
         return;
       }
 
+      function render() {
       document.title = session.title + " · Qiskit Fall Fest Serbia 2026";
       titleEl.textContent = session.title;
 
@@ -119,7 +123,19 @@
       });
 
       noteEl.hidden = !anyTba;
-    })();
+    }
+
+    render();
+    if (window.applyI18n) window.applyI18n();
+    window.addEventListener("langchange", function () {
+      // Re-render from the English source, then let i18n translate it
+      chipsEl.innerHTML = "";
+      speakersEl.innerHTML = "";
+      render();
+      if (window.applyI18n) window.applyI18n();
+    });
+  })();
   </script>
+  <script src="/i18n.js"></script>
 </body>
 </html>

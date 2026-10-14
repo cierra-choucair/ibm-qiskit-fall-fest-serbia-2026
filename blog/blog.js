@@ -49,10 +49,36 @@
     return doc.body.innerHTML;
   }
 
+  var SR_MONTHS = ["januar","februar","mart","april","maj","jun",
+                   "jul","avgust","septembar","oktobar","novembar","decembar"];
+
   function formatDate(iso) {
     var d = new Date(iso);
     if (isNaN(d)) return iso;
+    if (lang() === "sr") {
+      return d.getDate() + ". " + SR_MONTHS[d.getMonth()] + " " + d.getFullYear() + ".";
+    }
     return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  }
+
+  /* Serbian versions of rich post content live alongside the English in
+     posts.js — paragraphs there carry links and bold, so they are swapped
+     whole rather than string by string. */
+  function lang() {
+    try {
+      return new URLSearchParams(location.search).get("lang") || localStorage.getItem("qff-lang") || "en";
+    } catch (e) { return "en"; }
+  }
+
+  function localize(post) {
+    if (lang() !== "sr") return post;
+    return {
+      slug: post.slug,
+      date: post.date,
+      title: post.title_sr || post.title,
+      excerpt: post.excerpt_sr || post.excerpt,
+      html: post.html_sr || post.html,
+    };
   }
 
   /* ──────── data source ──────── */
@@ -91,15 +117,17 @@
   /* ──────── listing page ──────── */
 
   var list = document.getElementById("post-list");
-  if (list) {
+
+  function renderList() {
     getPosts()
       .then(function (posts) {
         if (!posts.length) {
           list.innerHTML = '<p class="blog-empty">No posts yet — the first dispatch lands soon.</p>';
+          if (window.applyI18n) window.applyI18n();
           return;
         }
         list.innerHTML = "";
-        posts.forEach(function (p) {
+        posts.map(localize).forEach(function (p) {
           var a = document.createElement("a");
           a.className = "card post-card";
           a.href = "/blog/post.html?slug=" + encodeURIComponent(p.slug);
@@ -117,35 +145,50 @@
           a.append(date, h, ex, more);
           list.appendChild(a);
         });
+        if (window.applyI18n) window.applyI18n();
       })
       .catch(function () {
         list.innerHTML = '<p class="blog-empty">Couldn’t load posts right now — try a refresh.</p>';
+        if (window.applyI18n) window.applyI18n();
       });
   }
 
   /* ──────── post page ──────── */
 
   var body = document.getElementById("post-body");
-  if (body) {
+  var slug = new URLSearchParams(location.search).get("slug");
+
+  function renderPost() {
     var titleEl = document.getElementById("post-title");
     var metaEl = document.getElementById("post-meta");
-    var slug = new URLSearchParams(location.search).get("slug");
-
     getPost(slug)
       .then(function (post) {
         if (!post) {
           titleEl.textContent = "Post not found";
           body.innerHTML = '<p>That post doesn’t exist (or moved). <a href="/blog/">Back to the blog →</a></p>';
+          if (window.applyI18n) window.applyI18n();
           return;
         }
+        post = localize(post);
         document.title = post.title + " · Qiskit Fall Fest Serbia 2026";
         titleEl.textContent = post.title;
         metaEl.textContent = formatDate(post.date);
         body.innerHTML = sanitize(post.html);
+        if (window.applyI18n) window.applyI18n();
       })
       .catch(function () {
         titleEl.textContent = "Couldn’t load this post";
         body.innerHTML = '<p>Try a refresh, or head <a href="/blog/">back to the blog →</a>.</p>';
+        if (window.applyI18n) window.applyI18n();
       });
   }
+
+  if (list) renderList();
+  if (body) renderPost();
+
+  /* Rebuild rich content when the language changes */
+  window.addEventListener("langchange", function () {
+    if (list) renderList();
+    if (body) renderPost();
+  });
 })();

@@ -130,6 +130,36 @@ Submitted fields: `name`, `email`, `affiliation`, `status`,
 markup but is stripped before sending; bot submissions that fill it are
 dropped client-side.
 
+## Language toggle (EN / SR)
+
+An EN/SR control in the nav bar switches the whole site to Serbian
+(Latin script) instantly — no reload, and the choice persists in
+`localStorage` across pages. `?lang=sr` on any URL also works, so a
+Serbian link can be shared directly.
+
+All Serbian text lives in **`i18n.js`**, keyed by the exact English
+string as it appears on the page:
+
+```js
+"Register": "Prijavi se",
+```
+
+To fix wording, edit the value. To translate something new, add its
+English text as a key — anything without a key simply stays in English,
+so a miss is never a broken page. The same dictionary covers attributes
+(`placeholder`, `aria-label`, `title`, `alt`).
+
+Blog posts are the exception: their paragraphs contain links and bold,
+so each post carries `title_sr`, `excerpt_sr` and `html_sr` fields in
+`blog/posts.js` and is swapped whole. Dates render with Serbian month
+names. Dynamically rendered content (session pages, organizer cards,
+blog) re-renders on a `langchange` event, so the toggle works
+everywhere.
+
+**The Serbian is a first pass and should be reviewed by a native
+speaker before it is promoted.** Translation is applied client-side,
+which also means search engines index the English text.
+
 ## Blog
 
 `/blog/` lists posts; `/blog/post.html?slug=…` renders one. Content has
