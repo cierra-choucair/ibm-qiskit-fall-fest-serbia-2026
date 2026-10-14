@@ -21,10 +21,18 @@ window.SESSIONS = [
     time: "08:30–09:15",
     title: "Welcome and Serbia’s quantum opportunity",
     lead: "Sanja Djurdjic Mijin, Cierra Lunde Choucair, Sasha Lazarevic",
-    html: [
-      "<p>The opening of Serbia’s first Qiskit Fall Fest: an introduction to the organizers, Serbia’s quantum ecosystem, and the goals of both the lecture day and the hackathon that follows a week later.</p>",
-      "<p>You’ll leave knowing how the two Saturdays fit together, and how to get the most out of the day whether you arrived curious or already writing circuits.</p>",
-    ].join("\n"),
+    html:
+      "<p>Discover how Serbia’s research, talent and growing technology " +
+      "community can contribute to the emerging quantum ecosystem. This " +
+      "opening session will explore potential quantum applications and " +
+      "how they could connect with Serbia’s scientific strengths, " +
+      "industries and local needs. It will also examine the role of " +
+      "education, collaboration and experimentation in building local " +
+      "quantum capabilities, and introduce the organizations bringing " +
+      "this initiative together. Participants will hear how the lecture " +
+      "day and upcoming hackathon connect foundational learning with " +
+      "opportunities to develop ideas, meet collaborators and get " +
+      "involved.</p>",
     speakers: [P.sanja, P.cierra, P.sasha],
   },
   {
@@ -32,10 +40,16 @@ window.SESSIONS = [
     time: "09:15–10:45",
     title: "Quantum 101",
     lead: "Sanja Djurdjic Mijin",
-    html: [
-      "<p>An accessible introduction to the ideas the rest of the day builds on: qubits, superposition, entanglement, measurement, and quantum circuits.</p>",
-      "<p>No prior quantum background is assumed. If the vocabulary is new to you, this is the session that makes the Qiskit seminar afterwards make sense.</p>",
-    ].join("\n"),
+    html:
+      "<p>What makes a quantum computer different from a classical " +
+      "computer? This introductory session will explore qubits, " +
+      "superposition, entanglement and measurement, building a foundation " +
+      "for understanding how quantum computation works. Participants will " +
+      "learn how quantum gates and circuits bring these concepts " +
+      "together, while gaining perspective on the possibilities and " +
+      "limitations of quantum computing. The session is designed to make " +
+      "the core ideas approachable for those encountering the subject for " +
+      "the first time.</p>",
     speakers: [P.sanja],
   },
   {
@@ -43,10 +57,16 @@ window.SESSIONS = [
     time: "11:00–13:00",
     title: "Qiskit 101: Getting started with quantum programming",
     lead: "Claudia Zendejas-Morales, IBM Qiskit Advocate (virtual)",
-    html: [
-      "<p>An introductory seminar on programming quantum computers with Qiskit, with live demonstrations and time for participant questions.</p>",
-      "<p>This is the longest block of the day and the one the hackathon leans on most — Qiskit is the framework both Saturdays run on. Bring a laptop if you can; the morning setup slot exists so everyone has a working environment before this begins.</p>",
-    ].join("\n"),
+    html:
+      "<p>Explore how the ideas behind quantum computing translate into " +
+      "code using Qiskit, an open-source toolkit for quantum programming. " +
+      "This introductory session will walk through the building blocks of " +
+      "quantum circuits and explain how to construct, run and interpret " +
+      "simple examples. Participants will become familiar with the basic " +
+      "workflow of quantum programming and how measurement results relate " +
+      "to the circuits they create. The session will provide a starting " +
+      "point for further learning and experimentation ahead of the " +
+      "hackathon.</p>",
     speakers: [
       {
         name: "Claudia Zendejas-Morales",
@@ -61,10 +81,16 @@ window.SESSIONS = [
     time: "14:00–15:00",
     title: "Quantum Security and Post Quantum Cryptography",
     lead: "Speaker to be confirmed",
-    html: [
-      "<p>An introduction to the theme — quantum security and post-quantum cryptography — the concepts behind it, and possible directions for hackathon projects.</p>",
-      "<p>One of the two tracks the hackathon on 28 November is built around — come with questions about what a strong project in this area could look like.</p>",
-    ].join("\n"),
+    html:
+      "<p>How does quantum computing change the way we think about " +
+      "protecting information? This session will introduce the risks that " +
+      "future quantum computers could pose to widely used cryptographic " +
+      "systems and explain the purpose of post-quantum cryptography. " +
+      "Participants will explore the distinction between quantum " +
+      "approaches to secure communication and cryptographic algorithms " +
+      "designed to resist quantum attacks on classical computers. The " +
+      "discussion will connect these ideas to practical security " +
+      "challenges and applications in telecommunications.</p>",
     speakers: [{ tba: true }],
   },
   {
@@ -72,10 +98,14 @@ window.SESSIONS = [
     time: "15:00–16:00",
     title: "Quantum Computing and Gaming",
     lead: "Speaker to be confirmed",
-    html: [
-      "<p>How quantum concepts and quantum computing can inform games and interactive experiences, with examples to inspire projects.</p>",
-      "<p>The second of the hackathon’s two tracks, and the most open-ended — a good fit if you like building things people can play with.</p>",
-    ].join("\n"),
+    html:
+      "<p>Games offer a creative way to explore quantum computing and " +
+      "make unfamiliar concepts tangible. This session will examine how " +
+      "quantum ideas such as superposition, measurement and entanglement " +
+      "can inspire game mechanics and interactive experiences. " +
+      "Participants will explore the possibilities of using quantum " +
+      "computation within games, alongside using games to explain quantum " +
+      "concepts.</p>",
     speakers: [{ tba: true }],
   },
   {
@@ -83,9 +113,14 @@ window.SESSIONS = [
     time: "16:00–16:45",
     title: "Questions, next steps and closing remarks",
     lead: "Organizing team",
-    html: [
-      "<p>Open questions, what happens between the two Saturdays, and how to stay in touch with Serbia’s quantum community after the Fall Fest.</p>",
-    ].join("\n"),
+    html:
+      "<p>Bring your questions and connect the day’s discussions to your " +
+      "own interests and ideas. The organizing team will outline the next " +
+      "steps for the November 28 hackathon, including the security and " +
+      "gaming tracks, preparation resources and opportunities to connect " +
+      "with teammates. Participants will leave with a clearer sense of " +
+      "how to continue learning and prepare to turn an initial idea into " +
+      "a project.</p>",
     speakersHeading: "The organizing team",
     speakers: ORGANIZING_TEAM,
   },
