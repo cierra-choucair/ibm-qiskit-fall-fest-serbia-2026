@@ -18,18 +18,18 @@ var ORGANIZING_TEAM = window.ORGANIZERS || [];
 window.SESSIONS = [
   {
     id: "welcome",
-    time: "10:00–10:20",
+    time: "08:30–09:15",
     title: "Welcome and Serbia’s quantum opportunity",
     lead: "Sanja Djurdjic Mijin, Cierra Lunde",
     html: [
-      "<p>The opening of Serbia’s first Qiskit Fall Fest. Twenty minutes to introduce the organizers, Serbia’s quantum ecosystem, and the goals of both the lecture day and the hackathon that follows a week later.</p>",
+      "<p>The opening of Serbia’s first Qiskit Fall Fest: an introduction to the organizers, Serbia’s quantum ecosystem, and the goals of both the lecture day and the hackathon that follows a week later.</p>",
       "<p>You’ll leave knowing how the two Saturdays fit together, and how to get the most out of the day whether you arrived curious or already writing circuits.</p>",
     ].join("\n"),
     speakers: [P.sanja, P.cierra],
   },
   {
     id: "quantum-101",
-    time: "10:20–10:55",
+    time: "09:15–10:45",
     title: "Quantum 101",
     lead: "Sanja Djurdjic Mijin",
     html: [
@@ -42,7 +42,7 @@ window.SESSIONS = [
     id: "qiskit-101",
     time: "11:00–13:00",
     title: "Qiskit 101: Getting started with quantum programming",
-    lead: "Claudia Zendejas-Morales (virtual) — confirmation pending",
+    lead: "Claudia Zendejas-Morales, IBM Qiskit Advocate (virtual)",
     html: [
       "<p>An introductory seminar on programming quantum computers with Qiskit, with live demonstrations and time for participant questions.</p>",
       "<p>This is the longest block of the day and the one the hackathon leans on most — Qiskit is the framework both Saturdays run on. Bring a laptop if you can; the morning setup slot exists so everyone has a working environment before this begins.</p>",
@@ -50,7 +50,9 @@ window.SESSIONS = [
     speakers: [
       {
         name: "Claudia Zendejas-Morales",
-        role: "Joining virtually · Confirmation pending",
+        role: "Joining virtually",
+        org: "IBM Qiskit Advocate",
+        photo: "/assets/claudia_headshot.jpg",
       },
     ],
   },
