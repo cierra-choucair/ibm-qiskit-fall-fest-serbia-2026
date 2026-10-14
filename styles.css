@@ -423,14 +423,6 @@ h2.centered {
   text-transform: uppercase;
 }
 
-.card-note {
-  margin-top: 1rem;
-  font-size: 0.88rem;
-  line-height: 1.6;
-  font-style: italic;
-  color: var(--dim);
-}
-
 .card-role {
   margin-top: 1.4rem;
   font-family: var(--font-display);
@@ -789,6 +781,11 @@ a.team-name::after,
   grid-template-columns: repeat(3, 1fr);
   gap: 1.4rem;
   margin-top: 1.4rem;
+}
+
+/* Two official tracks — wider cards, not a gap where a third used to be */
+.track-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .track-number {

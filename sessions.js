@@ -20,12 +20,12 @@ window.SESSIONS = [
     id: "welcome",
     time: "08:30–09:15",
     title: "Welcome and Serbia’s quantum opportunity",
-    lead: "Sanja Djurdjic Mijin, Cierra Lunde",
+    lead: "Sanja Djurdjic Mijin, Cierra Lunde Choucair, Sasha Lazarevic",
     html: [
       "<p>The opening of Serbia’s first Qiskit Fall Fest: an introduction to the organizers, Serbia’s quantum ecosystem, and the goals of both the lecture day and the hackathon that follows a week later.</p>",
       "<p>You’ll leave knowing how the two Saturdays fit together, and how to get the most out of the day whether you arrived curious or already writing circuits.</p>",
     ].join("\n"),
-    speakers: [P.sanja, P.cierra],
+    speakers: [P.sanja, P.cierra, P.sasha],
   },
   {
     id: "quantum-101",

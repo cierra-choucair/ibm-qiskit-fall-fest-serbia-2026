@@ -88,7 +88,7 @@
       linkedin: "https://www.linkedin.com/in/slocicic",
     },
     cierra: {
-      name: "Cierra Lunde",
+      name: "Cierra Lunde Choucair",
       org: "Universum Labs",
       photo: "/assets/cierra_headshot.png",
       linkedin: "https://www.linkedin.com/in/cierra-lunde",
