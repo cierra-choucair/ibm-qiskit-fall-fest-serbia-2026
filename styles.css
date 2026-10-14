@@ -165,6 +165,7 @@ section {
 
 .brand-cqt { height: 34px; }
 .brand-ul  { height: 22px; }
+.brand-qs  { height: 27px; }
 .brand-ibm { height: 17px; }
 
 .topbar-inner {
@@ -438,7 +439,7 @@ h2.centered {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 3rem 4.5rem;
+  gap: 2.6rem 3.5rem;
 }
 
 /* When the section heading is present above the logo row */
@@ -470,10 +471,12 @@ h2.centered {
   max-width: 100%;
 }
 
-/* Heights tuned per logo so the three read at similar visual weight */
-.logo-cqt { height: clamp(110px, 15vw, 168px); }
-.logo-ul  { height: clamp(54px, 7.4vw, 80px); }
-.logo-ibm { height: clamp(38px, 5vw, 54px); }
+/* Heights tuned per logo so the four read at similar visual weight and
+   still fit on one line */
+.logo-cqt { height: clamp(96px, 12.5vw, 140px); }
+.logo-ul  { height: clamp(44px, 5.8vw, 62px); }
+.logo-qs  { height: clamp(42px, 5.4vw, 58px); }
+.logo-ibm { height: clamp(30px, 3.9vw, 42px); }
 
 /* Organizer cards under the partner logos */
 
@@ -1192,18 +1195,48 @@ fieldset.field {
   }
 }
 
+/* Tablet: four brand marks and the full nav don't both fit at this width,
+   so scale the bar down rather than dropping either. */
+@media (max-width: 880px) {
+  .brand-logos {
+    gap: 0.8rem;
+  }
+
+  .brand-cqt { height: 26px; }
+  .brand-ul  { height: 17px; }
+  .brand-qs  { height: 20px; }
+  .brand-ibm { height: 13px; }
+
+  .topnav {
+    gap: 1rem;
+  }
+
+  .topnav a:not(.btn) {
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+  }
+
+  .topbar .btn-small {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.64rem;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 720px) {
   .topnav a:not(.btn) {
     display: none;
   }
 
+  /* Four marks plus the Register button have to fit a 390px viewport */
   .brand-logos {
-    gap: 0.7rem;
+    gap: 0.5rem;
   }
 
-  .brand-cqt { height: 27px; }
-  .brand-ul  { height: 17px; }
-  .brand-ibm { height: 13px; }
+  .brand-cqt { height: 24px; }
+  .brand-ul  { height: 15px; }
+  .brand-qs  { height: 17px; }
+  .brand-ibm { height: 11px; }
 
   .topbar .btn-small {
     padding: 0.5rem 0.8rem;
