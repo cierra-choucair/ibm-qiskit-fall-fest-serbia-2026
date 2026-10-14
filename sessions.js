@@ -58,19 +58,19 @@ window.SESSIONS = [
   },
   {
     id: "quantum-cryptography-security",
-    time: "14:00–14:45",
-    title: "Quantum cryptography and security",
+    time: "14:00–15:00",
+    title: "Quantum Security and Post Quantum Cryptography",
     lead: "Speaker to be confirmed",
     html: [
-      "<p>An introduction to the theme, the concepts behind it, and possible directions for hackathon projects.</p>",
+      "<p>An introduction to the theme — quantum security and post-quantum cryptography — the concepts behind it, and possible directions for hackathon projects.</p>",
       "<p>One of the two tracks the hackathon on 28 November is built around — come with questions about what a strong project in this area could look like.</p>",
     ].join("\n"),
     speakers: [{ tba: true }],
   },
   {
     id: "quantum-computing-gaming",
-    time: "15:00–15:45",
-    title: "Quantum computing and gaming",
+    time: "15:00–16:00",
+    title: "Quantum Computing and Gaming",
     lead: "Speaker to be confirmed",
     html: [
       "<p>How quantum concepts and quantum computing can inform games and interactive experiences, with examples to inspire projects.</p>",
@@ -79,20 +79,8 @@ window.SESSIONS = [
     speakers: [{ tba: true }],
   },
   {
-    id: "preparing-for-the-hackathon",
-    time: "15:45–16:15",
-    title: "Preparing for the hackathon",
-    lead: "Organizing team",
-    html: [
-      "<p>Everything you need to take part on 28 November: both tracks explained, participation requirements, how teams come together, the preparation materials to work through during the week, and the technical setup to have ready.</p>",
-      "<p>If you only attend one session before the hackathon, make it this one.</p>",
-    ].join("\n"),
-    speakersHeading: "The organizing team",
-    speakers: ORGANIZING_TEAM,
-  },
-  {
     id: "questions-and-closing",
-    time: "16:15–16:30",
+    time: "16:00–16:45",
     title: "Questions, next steps and closing remarks",
     lead: "Organizing team",
     html: [
