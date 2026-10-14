@@ -671,6 +671,17 @@ a.team-name::after,
   color: var(--dim);
 }
 
+/* Second line under a session name in the program table */
+.t-desc {
+  display: block;
+  margin-top: 0.3rem;
+  max-width: 48ch;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--dimmer);
+}
+
+
 .t-tba {
   font-style: italic;
   color: var(--dimmer);

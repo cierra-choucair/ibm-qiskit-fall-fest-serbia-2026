@@ -17,7 +17,7 @@ window.LOCAL_POSTS = [
       "Two Saturdays in Belgrade this November: a full day of Qiskit lectures and labs, then Serbia's first applied quantum hackathon. Registration is open.",
     html: [
       "<p>We're excited to announce that Serbia is joining this year's Qiskit Fall Fest — IBM Quantum's annual, worldwide series of community-led quantum events — with two Saturdays in Belgrade this November.</p>",
-      "<p>On <strong>Saturday 21 November</strong>, a full day of in-person instruction at the University of Belgrade: quantum foundations in the morning, hands-on Qiskit labs in the afternoon, with speakers from IBM Quantum and the Serbian quantum community. No quantum background required — the day is designed to take you from zero to running real circuits.</p>",
+      "<p>On <strong>Saturday 21 November</strong>, a full day of in-person instruction at the University of Belgrade: quantum foundations in the morning, a two-hour Qiskit programming seminar at midday, with speakers from IBM Quantum and the Serbian quantum community. No quantum background required — the day is designed to take you from zero to running real circuits.</p>",
       "<p>On <strong>Saturday 28 November</strong>, Serbia's first applied quantum hackathon: one day, small teams, and challenge tracks built on real quantum use cases relevant to Serbia. Places are limited to around fifty and selected by application.</p>",
       "<p>The event is organized by the Center for Quantum Technologies of Serbia and Universum Labs, as part of the IBM Qiskit Fall Fest program.</p>",
       "<p><a href=\"/#register\">Registration is open</a> — the lecture day is free and open, and the same form lets you raise your hand for the hackathon. Challenge tracks, speakers, and the exact room are announced here and by email as they're confirmed.</p>",
@@ -38,7 +38,7 @@ window.LOCAL_POSTS = [
       "<li><a href=\"https://github.com/Qiskit/qiskit\" target=\"_blank\" rel=\"noopener noreferrer\">Qiskit on GitHub</a> — the framework itself; <code>pip install qiskit</code> is all it takes.</li>",
       "</ul>",
       "<h2>What to aim for</h2>",
-      "<p>If you can build a small circuit, run it on a simulator, and read the results, you're ahead of the curve — the guided lab on lecture day builds from there to optimization workloads like QAOA. And if none of those words mean anything yet: come anyway. The morning sessions assume nothing.</p>",
+      "<p>If you can build a small circuit, run it on a simulator, and read the results, you're ahead of the curve — the Qiskit 101 seminar on lecture day picks up from there. And if none of those words mean anything yet: come anyway. The morning sessions assume nothing.</p>",
       "<p>Questions before then? Use the notes field when you <a href=\"/#register\">register</a> — we read everything.</p>",
     ].join("\n"),
   },

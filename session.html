@@ -54,7 +54,7 @@
       <div class="wrap wrap-prose">
         <article id="session-body" class="prose"></article>
 
-        <p class="speakers-kicker">Speakers</p>
+        <p class="speakers-kicker" id="speakers-kicker">Speakers</p>
         <div id="session-speakers" class="team-grid" style="justify-content: flex-start;"></div>
         <p class="speaker-note" id="speaker-note">Speakers for this session are confirmed soon — the slot and its content are set. Register and we&rsquo;ll email you when they&rsquo;re announced.</p>
 
@@ -107,9 +107,13 @@
 
       bodyEl.innerHTML = session.html;
 
+      if (session.speakersHeading) {
+        document.getElementById("speakers-kicker").textContent = session.speakersHeading;
+      }
+
       // Cards come from the shared renderer in /people.js
       var anyTba = false;
-      (session.speakers || []).forEach(function (sp) {
+      (session.speakers || []).filter(Boolean).forEach(function (sp) {
         if (sp.tba) anyTba = true;
         speakersEl.appendChild(window.renderPersonCard(sp));
       });

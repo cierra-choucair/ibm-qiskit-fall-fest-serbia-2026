@@ -70,40 +70,47 @@
     return card;
   };
 
-  /* ──────── The organizers — edit this list to change the home page ──────── */
+  /* ──────── The people — one entry per person, referenced by key ────────
+     window.PEOPLE.sanja and friends are reused by sessions.js for speaker
+     cards, so a photo or profile URL is only ever edited in one place. */
 
-  window.ORGANIZERS = [
-    {
+  window.PEOPLE = {
+    sanja: {
       name: "Sanja Djurdjic Mijin",
       org: "CQT Serbia",
       photo: "/assets/sanja_headshot.png",
       linkedin: "https://www.linkedin.com/in/sanja-djurdjic-mijin-b63b9b124",
     },
-    {
+    slobodan: {
       name: "Slobodan Cicic",
       org: "CQT Serbia",
       photo: "/assets/slobodan_headshot.jpeg",
       linkedin: "https://www.linkedin.com/in/slocicic",
     },
-    {
+    cierra: {
       name: "Cierra Lunde",
       org: "Universum Labs",
       photo: "/assets/cierra_headshot.png",
       linkedin: "https://www.linkedin.com/in/cierra-lunde",
     },
-    {
+    sandro: {
       name: "Sandro Bilobrk",
       org: "Universum Labs",
       photo: "/assets/sandro_headshot.jpeg",
       linkedin: "https://www.linkedin.com/in/sandro-bilobrk",
     },
-    {
+    sasha: {
       name: "Sasha Lazarevic",
       org: "Quantum Serbia",
       photo: "/assets/sasha_headshot.jpeg",
       linkedin: "https://www.linkedin.com/in/lzrvc/",
     },
-  ];
+  };
+
+  /* Order of the organizers grid on the home page */
+  window.ORGANIZERS = ["sanja", "slobodan", "cierra", "sandro", "sasha"].map(
+    function (k) { return window.PEOPLE[k]; }
+  );
 
   var grid = document.getElementById("organizer-cards");
   if (grid) {
