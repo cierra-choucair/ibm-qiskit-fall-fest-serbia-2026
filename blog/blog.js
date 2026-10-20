@@ -55,7 +55,7 @@
   function formatDate(iso) {
     var d = new Date(iso);
     if (isNaN(d)) return iso;
-    if (lang() === "sr") {
+    if (lang().indexOf("sr") === 0) {
       return d.getDate() + ". " + SR_MONTHS[d.getMonth()] + " " + d.getFullYear() + ".";
     }
     return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
@@ -71,7 +71,7 @@
   }
 
   function localize(post) {
-    if (lang() !== "sr") return post;
+    if (lang().indexOf("sr") !== 0) return post;
     return {
       slug: post.slug,
       date: post.date,
@@ -146,6 +146,7 @@
           list.appendChild(a);
         });
         if (window.applyI18n) window.applyI18n();
+        if (window.i18nTransliterate) window.i18nTransliterate(list);
       })
       .catch(function () {
         list.innerHTML = '<p class="blog-empty">Couldn’t load posts right now — try a refresh.</p>';
@@ -175,6 +176,11 @@
         metaEl.textContent = formatDate(post.date);
         body.innerHTML = sanitize(post.html);
         if (window.applyI18n) window.applyI18n();
+        if (window.i18nTransliterate) {
+          window.i18nTransliterate(body);
+          window.i18nTransliterate(titleEl);
+          window.i18nTransliterate(metaEl);
+        }
       })
       .catch(function () {
         titleEl.textContent = "Couldn’t load this post";

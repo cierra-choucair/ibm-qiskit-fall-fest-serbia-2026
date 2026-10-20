@@ -1,11 +1,17 @@
 /* ────────────────────────────────────────────────────────────────────────
    Serbian translation layer.
 
-   Everything on the site is authored in English; this file holds the
-   Serbian (Latin script) equivalents, keyed by the exact English string.
-   On load it reads the saved language (or ?lang=sr), and the EN/SR
-   toggle in the nav bar switches instantly — no reload, because the
-   English originals are kept in memory and restored on the way back.
+   Three languages: English (en), Serbian Latin (sr) and Serbian
+   Cyrillic (sr-cyrl). Everything on the site is authored in English;
+   this file holds the Serbian (Latin script) equivalents, keyed by the
+   exact English string. Cyrillic is not a second dictionary — Serbian
+   Latin and Cyrillic map one to one, so it is transliterated from the
+   Latin at render time (see toCyrillic below). One dictionary to keep.
+
+   On load it reads the saved language (or ?lang=sr / ?lang=sr-cyrl),
+   and the EN / SR / ЋИР toggle in the nav bar switches instantly — no
+   reload, because the English originals are kept in memory and
+   restored on the way back.
 
    To fix or add a translation, edit TEXT below: the key is the English
    as it appears on the page, whitespace-collapsed. Anything without a
@@ -203,16 +209,73 @@ window.I18N = {
   "use strict";
 
   var KEY = "qff-lang";
+  var LANGS = ["en", "sr", "sr-cyrl"];
   var ATTRS = ["placeholder", "aria-label", "title", "alt"];
-  var saved = []; // English originals, so switching back needs no reload
+  var saved = [];          // English originals, so switching back needs no reload
   var current = "en";
 
   function norm(s) { return s.replace(/\s+/g, " ").trim(); }
   function dict() { return (window.I18N && window.I18N.TEXT) || {}; }
 
-  function translate(root) {
-    var D = dict();
-    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+  /* ──────── Serbian Latin → Cyrillic ────────
+     Serbian is digraphia: the two scripts map one to one, so the Cyrillic
+     site is derived from the Latin translations rather than maintained as
+     a second dictionary — fix the Latin once and both follow.
+
+     Brand names, code and URLs stay in Latin (standard practice in
+     Serbian Cyrillic text), as do personal names, which are never
+     dictionary entries and so are never touched. */
+
+  var KEEP = [
+    "Qiskit", "qiskit", "IBM", "Quantum", "Universum", "Labs", "Serbia",
+    "GitHub", "Fall", "Fest", "CQT", "API", "Advocate", "Python",
+    "Claudia", "Zendejas-Morales", "pip", "install", "EN", "SR",
+    "data-endpoint", "index.html", "README",
+  ];
+  function esc(w) { return w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  var KEEP_RE = new RegExp(
+    "(https?:\\/\\/\\S+|[^\\s<>()]+@[^\\s<>()]+\\.[A-Za-z]{2,}|\\b(?:" +
+      KEEP.map(esc).join("|") + ")\\b)", "g"
+  );
+
+  var DIGRAPHS = { "Lj": "Љ", "LJ": "Љ", "lj": "љ", "Nj": "Њ", "NJ": "Њ", "nj": "њ",
+                   "Dž": "Џ", "DŽ": "Џ", "dž": "џ" };
+  var LETTERS = {
+    "A":"А","B":"Б","C":"Ц","Č":"Ч","Ć":"Ћ","D":"Д","Đ":"Ђ","E":"Е","F":"Ф","G":"Г",
+    "H":"Х","I":"И","J":"Ј","K":"К","L":"Л","M":"М","N":"Н","O":"О","P":"П","R":"Р",
+    "S":"С","Š":"Ш","T":"Т","U":"У","V":"В","Z":"З","Ž":"Ж",
+    "a":"а","b":"б","c":"ц","č":"ч","ć":"ћ","d":"д","đ":"ђ","e":"е","f":"ф","g":"г",
+    "h":"х","i":"и","j":"ј","k":"к","l":"л","m":"м","n":"н","o":"о","p":"п","r":"р",
+    "s":"с","š":"ш","t":"т","u":"у","v":"в","z":"з","ž":"ж"
+  };
+
+  function transliterateRun(text) {
+    var out = "";
+    for (var i = 0; i < text.length; i++) {
+      var pair = text.substr(i, 2);
+      if (DIGRAPHS[pair]) { out += DIGRAPHS[pair]; i++; continue; }
+      var ch = text.charAt(i);
+      out += LETTERS[ch] || ch;
+    }
+    return out;
+  }
+
+  function toCyrillic(text) {
+    if (!text) return text;
+    return text.split(KEEP_RE).map(function (part, i) {
+      // split() with one capture group yields: text, kept, text, kept, …
+      return i % 2 ? part : transliterateRun(part);
+    }).join("");
+  }
+
+  function localize(value) {
+    return current === "sr-cyrl" ? toCyrillic(value) : value;
+  }
+
+  /* ──────── Applying ──────── */
+
+  function textWalker(root) {
+    return document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
       acceptNode: function (n) {
         var p = n.parentNode;
         if (!p || p.nodeName === "SCRIPT" || p.nodeName === "STYLE") return NodeFilter.FILTER_REJECT;
@@ -220,13 +283,18 @@ window.I18N = {
         return n.nodeValue && n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
       },
     });
+  }
+
+  function translate(root) {
+    var D = dict();
+    var walker = textWalker(root);
     var node;
     while ((node = walker.nextNode())) {
       var raw = node.nodeValue;
       var tr = D[norm(raw)];
       if (!tr) continue;
       saved.push({ node: node, value: raw });
-      node.nodeValue = raw.match(/^\s*/)[0] + tr + raw.match(/\s*$/)[0];
+      node.nodeValue = raw.match(/^\s*/)[0] + localize(tr) + raw.match(/\s*$/)[0];
     }
     ATTRS.forEach(function (attr) {
       var els = root.querySelectorAll ? root.querySelectorAll("[" + attr + "]") : [];
@@ -235,9 +303,20 @@ window.I18N = {
         var tr = v && D[norm(v)];
         if (!tr) return;
         saved.push({ el: el, attr: attr, value: v });
-        el.setAttribute(attr, tr);
+        el.setAttribute(attr, localize(tr));
       });
     });
+  }
+
+  /* Content already written in Serbian Latin (blog posts) — transliterate
+     the whole subtree rather than looking strings up. */
+  function transliterateTree(root) {
+    if (current !== "sr-cyrl" || !root) return;
+    var walker = textWalker(root);
+    var node;
+    while ((node = walker.nextNode())) {
+      node.nodeValue = toCyrillic(node.nodeValue);
+    }
   }
 
   function restore() {
@@ -250,21 +329,27 @@ window.I18N = {
   }
 
   function setLang(lang, persist) {
-    current = lang === "sr" ? "sr" : "en";
-    document.documentElement.lang = current;
-    if (current === "sr") { restore(); translate(document.body); }
-    else { restore(); }
-    document.querySelectorAll(".lang-toggle [data-lang]").forEach(function (el) {
-      el.classList.toggle("is-active", el.getAttribute("data-lang") === current);
+    current = LANGS.indexOf(lang) >= 0 ? lang : "en";
+    document.documentElement.lang =
+      current === "sr" ? "sr-Latn" : current === "sr-cyrl" ? "sr-Cyrl" : "en";
+    restore();
+    if (current !== "en") translate(document.body);
+
+    var buttons = document.querySelectorAll(".lang-toggle [data-lang]");
+    Array.prototype.forEach.call(buttons, function (el) {
+      var on = el.getAttribute("data-lang") === current;
+      el.classList.toggle("is-active", on);
+      el.setAttribute("aria-pressed", on ? "true" : "false");
     });
-    var btn = document.querySelector(".lang-toggle");
-    if (btn) btn.setAttribute("aria-label", current === "sr" ? "Prebaci na engleski" : "Switch to Serbian");
+
     if (persist) { try { localStorage.setItem(KEY, current); } catch (e) {} }
     window.dispatchEvent(new CustomEvent("langchange", { detail: { lang: current } }));
   }
 
   /* Re-apply after content is rendered by people.js / sessions / blog */
-  window.applyI18n = function () { if (current === "sr") { translate(document.body); } };
+  window.applyI18n = function () { if (current !== "en") translate(document.body); };
+  window.i18nTransliterate = function (el) { transliterateTree(el); };
+  window.i18nToCyrillic = toCyrillic;
   window.currentLang = function () { return current; };
 
   function init() {
@@ -273,12 +358,12 @@ window.I18N = {
     try { stored = localStorage.getItem(KEY); } catch (e) {}
     setLang(param || stored || "en", Boolean(param));
 
-    var btn = document.querySelector(".lang-toggle");
-    if (btn) {
-      btn.addEventListener("click", function () {
-        setLang(current === "sr" ? "en" : "sr", true);
-      });
-    }
+    var toggle = document.querySelector(".lang-toggle");
+    if (!toggle) return;
+    toggle.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-lang]");
+      if (btn) setLang(btn.getAttribute("data-lang"), true);
+    });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

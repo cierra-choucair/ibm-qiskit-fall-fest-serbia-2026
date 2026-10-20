@@ -47,9 +47,11 @@
         <a href="#program">Program</a>
         <a href="#challenge">The Challenge</a>
         <a href="/blog/">Blog</a>
-        <button class="lang-toggle" type="button" data-no-i18n aria-label="Switch to Serbian">
-          <span data-lang="en" class="is-active">EN</span><span class="lang-sep" aria-hidden="true">/</span><span data-lang="sr">SR</span>
-        </button>
+        <div class="lang-toggle" data-no-i18n role="group" aria-label="Language · Jezik · Језик">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="sr" aria-pressed="false">SR</button>
+          <button type="button" data-lang="sr-cyrl" aria-pressed="false">ЋИР</button>
+        </div>
         <a class="btn btn-primary btn-small" href="#register">Register</a>
       </nav>
     </div>
