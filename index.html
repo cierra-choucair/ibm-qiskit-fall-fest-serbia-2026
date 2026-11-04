@@ -59,7 +59,7 @@
 
   <main>
     <!-- ──────── HERO — a qubit, live ──────── -->
-    <section class="hero" aria-label="Serbia's first applied quantum hackathon">
+    <section class="hero" aria-label="Serbia&rsquo;s first applied quantum hackathon">
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <h1>
@@ -123,7 +123,8 @@
         <h2 id="program-heading">Learn, Then Apply.</h2>
         <div class="program-grid">
           <article class="card program-card">
-            <p class="program-date violet">Sat <span>21</span> Nov</p>
+            <!-- data-i18n keys the day so Serbian gets its ordinal period ("суб 21. нов") -->
+            <p class="program-date violet">Sat <span data-i18n="badge.day.21">21</span> Nov</p>
             <p class="card-eyebrow violet">Qiskit Fall Fest Lecture day</p>
             <h3>A full day of quantum instruction</h3>
             <p>
@@ -136,7 +137,7 @@
             </p>
           </article>
           <article class="card program-card">
-            <p class="program-date cyan">Sat <span>28</span> Nov</p>
+            <p class="program-date cyan">Sat <span data-i18n="badge.day.28">28</span> Nov</p>
             <p class="card-eyebrow cyan">The hackathon</p>
             <h3>Serbia&rsquo;s first applied quantum hackathon</h3>
             <p>
@@ -325,7 +326,8 @@
             </div>
           </div>
           <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <button class="btn btn-primary btn-register" type="submit">Register</button>
+          <!-- data-i18n: "Register" is "Пријави се" in the nav, "Пријавите се" here -->
+          <button class="btn btn-primary btn-register" type="submit" data-i18n="form.submit">Register</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
         <p class="privacy">Your details are used for event organization only.</p>

@@ -1,207 +1,261 @@
 /* ────────────────────────────────────────────────────────────────────────
    Serbian translation layer.
 
-   Three languages: English (en), Serbian Latin (sr) and Serbian
-   Cyrillic (sr-cyrl). Everything on the site is authored in English;
-   this file holds the Serbian (Latin script) equivalents, keyed by the
-   exact English string. Cyrillic is not a second dictionary — Serbian
-   Latin and Cyrillic map one to one, so it is transliterated from the
-   Latin at render time (see toCyrillic below). One dictionary to keep.
+   Three languages: English (en), Serbian Latin (sr) and Serbian Cyrillic
+   (sr-cyrl).
 
-   On load it reads the saved language (or ?lang=sr / ?lang=sr-cyrl),
-   and the EN / SR / ЋИР toggle in the nav bar switches instantly — no
-   reload, because the English originals are kept in memory and
-   restored on the way back.
+   SERBIAN IS AUTHORED IN CYRILLIC, EVERYWHERE — here, in blog/posts.js and
+   in blog/blog.js. The Latin version is derived from it by transliteration
+   (toLatin below), because Serbian Cyrillic maps one to one onto Serbian
+   Latin: Љ is always Lj, Ђ is always Đ, and so on. One dictionary, both
+   scripts, no second copy to keep in step.
 
-   To fix or add a translation, edit TEXT below: the key is the English
-   as it appears on the page, whitespace-collapsed. Anything without a
-   key simply stays in English, so a miss is never a broken page.
+   The direction matters. Going the other way is lossy — Latin "nadživeti"
+   could be н-а-д-ж or н-а-д-џ, and only a human knows which. From Cyrillic
+   there is no such question, so the Cyrillic is the source and the Latin
+   falls out of it.
 
-   Rich content (blog posts) carries its own *_sr fields in
-   blog/posts.js instead — those paragraphs contain links and bold, so
-   they are swapped whole rather than string by string.
+   It also means Latin text inside a Serbian string survives untouched:
+   "Qiskit-у" has no Cyrillic in "Qiskit", so it transliterates to
+   "Qiskit-u" and the brand is never mangled. No list of protected words is
+   needed — the two alphabets simply don't collide. The exceptions are the
+   handful of names Serbian spells out phonetically (Линктин, Пајтон); they
+   are listed in BRANDS so the Latin says LinkedIn and Python.
+
+   Translations: Slobodan Cicic's worksheet of 14 October 2026, applied
+   verbatim except where noted in README ("Language toggle"). To fix
+   wording, edit the Cyrillic value — the Latin follows automatically.
+   The key is the English exactly as the page spells it, whitespace
+   collapsed, curly apostrophes and all; anything without a key simply
+   stays in English, so a miss is never a broken page.
+
+   Two English strings need two different Serbian ones depending on where
+   they sit ("Register", "Quantum 101"). Those elements carry a data-i18n
+   attribute naming an explicit key below, which wins over the text lookup.
+
+   Rich content (blog posts) carries its own _sr fields in blog/posts.js
+   instead — those paragraphs contain links and bold, so they are swapped
+   whole rather than string by string.
    ──────────────────────────────────────────────────────────────────────── */
 
 window.I18N = {
-  /* Language name shown on the toggle is not translated. */
+  /* Language names on the toggle itself are not translated. */
   TEXT: {
     /* ── Nav + shared chrome ── */
-    "Partners": "Partneri",
-    "Program": "Program",
-    "The Challenge": "Izazov",
-    "Blog": "Blog",
-    "Register": "Prijavi se",
-    "Qiskit Fall Fest Serbia — home": "Qiskit Fall Fest Srbija — početna",
-    "Center for Quantum Technologies of Serbia, Universum Labs, Quantum Serbia, and IBM Quantum":
-      "Centar za kvantne tehnologije Srbije, Universum Labs, Quantum Serbia i IBM Quantum",
+    "Partners": "Партнери",
+    "Program": "Програм",
+    "The Challenge": "Изазов",
+    "Blog": "Блог",
+    "Register": "Пријави се",
+    "Qiskit Fall Fest Serbia — home": "Qiskit Fall Fest Serbia — Почетна страница",
+    "Page": "Страница",
     "© 2026 Universum Labs · Center for Quantum Technologies of Serbia":
-      "© 2026. Universum Labs · Centar za kvantne tehnologije Srbije",
+      "© 2026 Universum Labs · Центар за квантне технологије Србије",
     "Part of the Qiskit Fall Fest, with IBM Quantum — built for Serbia’s quantum community.":
-      "Deo Qiskit Fall Fest-a, uz IBM Quantum — napravljeno za kvantnu zajednicu Srbije.",
+      "Део Qiskit Fall Fest-а, уз IBM Quantum — направљено за квантну заједницу Србије.",
+    "Center for Quantum Technologies of Serbia, Universum Labs, Quantum Serbia, and IBM Quantum":
+      "Центар за квантне технологије Србије, Universum Labs, Квантна Србија и IBM Quantum",
 
     /* ── Hero ── */
-    "Serbia’s": "Srpski",
-    "Qiskit Fall Fest": "Qiskit Fall Fest",
+    "Qiskit Fall Fest Serbia — Serbia's First Applied Quantum Hackathon":
+      "Qiskit Fall Fest Serbia — Први примењени квантни хакатон у Србији",
+    "Serbia’s first applied quantum hackathon": "Први примењени квантни хакатон у Србији",
     "Two Saturdays at the University of Belgrade: a full day of Qiskit Fall Fest lectures, featuring speakers from IBM Quantum, on 21 November. One day to apply quantum with Qiskit at Serbia’s first quantum hackathon on 28 November. Built for all. Registration is open — secure your spot now.":
-      "Dve subote na Univerzitetu u Beogradu: ceo dan predavanja u okviru Qiskit Fall Fest-a, sa predavačima iz IBM Quantum-a, 21. novembra. Jedan dan za primenu kvantnog računarstva uz Qiskit na prvom kvantnom hakatonu u Srbiji, 28. novembra. Za sve nivoe znanja. Prijave su otvorene — rezervišite svoje mesto.",
-    "Register Now": "Prijavi se",
-    "See the program": "Pogledaj program",
-    "Qiskit Fall Fest 2026 sticker": "Qiskit Fall Fest 2026 nalepnica",
+      "Две суботе на Универзитету у Београду: цео дан предавања у оквиру Qiskit Fall Fest-а, са предавачима из IBM Quantum-а, 21. новембра. Један дан за примену квантног рачунарства уз Qiskit на првом квантном хакатону у Србији, 28. новембра. За све нивое знања. Пријаве су отворене — резервишите своје место.",
+    "Register Now": "Пријави се",
+    "See the program": "Погледај програм",
+    "Qiskit Fall Fest 2026 sticker": "Qiskit Fall Fest 2026 налепница",
 
     /* ── Partners + organizers ── */
-    "The team behind it": "Tim iza događaja",
-    "Partners & organizers": "Partneri i organizatori",
-    "The organizers": "Organizatori",
-    "Center for Quantum Technologies of Serbia": "Centar za kvantne tehnologije Srbije",
-    "Universum Labs": "Universum Labs",
-    "Quantum Serbia": "Quantum Serbia",
-    "IBM Quantum": "IBM Quantum",
-    "CQT Serbia": "CQT Srbija",
-    "IBM Qiskit Advocate": "IBM Qiskit Advocate",
+    "The team behind it": "Тим иза догађаја",
+    "Partners & organizers": "Партнери и организатори",
+    "Center for Quantum Technologies of Serbia": "Центар за квантне технологије Србије",
+    "Quantum Serbia": "Квантна Србија",
+    "Sanja Djurdjic Mijin": "Сања Ђурђић Мијин",
+    "CQT Serbia": "ЦКТС",
+    "Slobodan Cicic": "Слободан Чичић",
+    "Sandro Bilobrk": "Сандро Билобрк",
+    "Sasha Lazarevic": "Саша Лазаревић",
+    "Sanja Djurdjic Mijin on LinkedIn": "Сања Ђурђић Мијин на Линктину",
+    "Slobodan Cicic on LinkedIn": "Слободан Чичић на Линктину",
+    "Cierra Lunde Choucair on LinkedIn": "Cierra Lunde Choucair на Линктину",
+    "Sandro Bilobrk on LinkedIn": "Сандро Билобрк на Линктину",
+    "Sasha Lazarevic on LinkedIn": "Саша Лазаревић на Линктину",
 
     /* ── Program ── */
-    "The program": "Program",
-    "Learn, Then Apply.": "Nauči, pa primeni.",
-    "Sat": "Sub",
-    "Nov": "nov",
-    "Qiskit Fall Fest Lecture day": "Qiskit Fall Fest — dan predavanja",
-    "A full day of quantum instruction": "Ceo dan kvantne nastave",
+    "The program": "Програм",
+    "Learn, Then Apply.": "Научи, па примени",
+    "Qiskit Fall Fest Lecture day": "Qiskit Fall Fest — дан предавања",
+    "A full day of quantum instruction": "Цео дан квантне наставе",
     "Lectures and hands-on Qiskit sessions at the University of Belgrade, built on IBM’s official learning materials: quantum foundations in the morning, a two-hour Qiskit programming seminar at midday, and two exploratory themes where quantum technology is being applied today. Primarily in person, with a virtual option.":
-      "Predavanja i praktične Qiskit sesije na Univerzitetu u Beogradu, zasnovane na zvaničnim IBM materijalima za učenje: osnove kvantnog računarstva pre podne, dvočasovni seminar o programiranju u Qiskit-u oko podneva i dve istraživačke teme u kojima se kvantna tehnologija već primenjuje. Pretežno uživo, uz mogućnost onlajn učešća.",
-    "The hackathon": "Hakaton",
-    "Serbia’s first applied quantum hackathon": "Prvi primenjeni kvantni hakaton u Srbiji",
+      "Предавања и практичне Qiskit сесије на Универзитету у Београду, засноване на званичним IBM материјалима за учење: основе квантног рачунарства пре подне, двочасовни семинар о програмирању у Qiskit-у око поднева и две истраживачке теме у којима се квантна технологија већ примењује. Претежно уживо, уз могућност онлајн учешћа.",
+    "The hackathon": "Хакатон",
     "One day, small teams, two Serbia-relevant challenge tracks — everything built with Qiskit, one week after the lectures so you arrive ready. Places are limited to around 50 and selected by application — tick the hackathon box when you register below.":
-      "Jedan dan, mali timovi, dve kategorije izazova relevantne za Srbiju — sve se gradi u Qiskit-u, nedelju dana posle predavanja, da dođete spremni. Broj mesta je ograničen na oko 50 i bira se na osnovu prijave — označite polje za hakaton kada se prijavite ispod.",
-    "Click a session for details. Speakers and session leads to be confirmed soon.":
-      "Kliknite na sesiju za detalje. Predavači i voditelji sesija biće uskoro potvrđeni.",
-    "Lecture day program, Saturday 21 November": "Program dana predavanja, subota 21. novembar",
+      "Један дан, мали тимови, две категорије изазова релевантне за Србију — све се гради у Qiskit-у, недељу дана после предавања, да дођете спремни. Број места је ограничен на око 50 и бира се на основу пријаве — означите поље за хакатон када се пријавите испод.",
 
-    /* Table */
-    "Time": "Vreme",
-    "Session": "Sesija",
-    "Led by": "Vodi",
-    "Registration, coffee and technical setup": "Registracija, kafa i tehnička priprema",
-    "Welcome and Serbia’s quantum opportunity": "Dobrodošlica i kvantna prilika za Srbiju",
-    "Quantum 101": "Kvantno računarstvo 101",
-    "Break": "Pauza",
+    /* ── Lecture day schedule ── */
+    "Lecture day program, Saturday 21 November": "Програм дана предавања, субота 21. новембар",
+    "Time": "Време",
+    "Session": "Сесија",
+    "Led by": "Води",
+    "Registration, coffee and technical setup": "Регистрација, кафа и техничка припрема",
+    "Organizing team": "Организациони тим",
+    "Welcome and Serbia’s quantum opportunity": "Добродошлица и квантна прилика за Србију",
+    "Sanja Djurdjic Mijin, Cierra Lunde Choucair, Sasha Lazarevic":
+      "Сања Ђурђић Мијин, Cierra Lunde Choucair, Саша Лазаревић",
+    "Quantum 101": "Квантно рачунарство 101",
+    "Break": "Пауза",
+    "All": "Сви",
     "Qiskit 101: Getting started with quantum programming":
-      "Qiskit 101: Prvi koraci u kvantnom programiranju",
-    "Lunch and networking": "Ručak i umrežavanje",
-    "Quantum Security and Post Quantum Cryptography": "Kvantna bezbednost i postkvantna kriptografija",
-    "Quantum Computing and Gaming": "Kvantno računarstvo i igre",
-    "Questions, next steps and closing remarks": "Pitanja, naredni koraci i zatvaranje",
-    "Organizing team": "Organizacioni tim",
-    "All": "Svi",
-    "Speaker to be confirmed": "Predavač se potvrđuje",
-    "Claudia Zendejas-Morales (virtual)": "Claudia Zendejas-Morales (onlajn)",
+      "Qiskit 101: Први кораци у квантном програмирању",
+    "Claudia Zendejas-Morales (virtual)": "Claudia Zendejas-Morales (онлајн)",
+    "Lunch and networking": "Ручак и повезивање",
+    "Quantum Security and Post Quantum Cryptography":
+      "Квантна безбедност и постквантна криптографија",
+    "Speaker to be confirmed": "Предавач треба да буде потврђен",
+    "Quantum Computing and Gaming": "Квантно рачунарство и видео игре",
+    "Questions, next steps and closing remarks": "Питања, наредни кораци и затварање",
+    "Click a session for details. Speakers and session leads to be confirmed soon.":
+      "Кликните на сесију за детаље. Предавачи и водитељи сесија биће ускоро потврђени.",
 
-    /* ── Challenge ── */
-    "About the challenge": "O izazovu",
+    /* ── The challenge ── */
+    "About the challenge": "О изазову",
     "Challenges designed to serve Serbia's unique ecosystem.":
-      "Izazovi osmišljeni za jedinstveni ekosistem Srbije.",
+      "Изазови осмишљени за јединствени екосистем Србије.",
     "Every track starts from a real quantum use case — assessed for technical maturity, matched against its classical baseline, and chosen for its relevance to Serbia’s industry and research strengths. You’ll know exactly what you’re solving, why the problem matters, and which quantum tools apply. No deep quantum training required to enter: each challenge comes with beginner-friendly framing, recommended tools, and clear judging criteria.":
-      "Svaka kategorija polazi od stvarnog kvantnog slučaja upotrebe — procenjenog po tehnološkoj zrelosti, upoređenog sa klasičnim rešenjem i izabranog po značaju za industriju i istraživanje u Srbiji. Znaćete tačno šta rešavate, zašto je problem važan i koji kvantni alati se koriste. Za učešće nije potrebno dubinsko predznanje: svaki izazov dolazi sa objašnjenjem prilagođenim početnicima, preporučenim alatima i jasnim kriterijumima ocenjivanja.",
-    "The two challenge tracks": "Dve kategorije izazova",
-    "Quantum Computing × Game Development": "Kvantno računarstvo × razvoj igara",
+      "Свака категорија полази од стварног квантног случаја употребе — процењеног по технолошкој зрелости, упоређеног са класичним решењем и изабраног по значају за индустрију и истраживање у Србији. Знаћете тачно шта решавате, зашто је проблем важан и који квантни алати се користе. За учешће није потребно дубинско предзнање: сваки изазов долази са објашњењем прилагођеним почетницима, препорученим алатима и јасним критеријумима оцењивања.",
+    "The two challenge tracks": "Две категорије изазова",
+    "Quantum Computing × Game Development": "Квантно рачунарство × развој видео игара",
     "Explore the intersection of quantum computing and game design. Create games or interactive experiences that use quantum computing, draw inspiration from quantum concepts, or help players understand them through play.":
-      "Istražite presek kvantnog računarstva i dizajna igara. Napravite igre ili interaktivna iskustva koja koriste kvantno računarstvo, crpe inspiraciju iz kvantnih koncepata ili pomažu igračima da ih razumeju kroz igru.",
-    "Quantum Security & Telecom": "Kvantna bezbednost i telekomunikacije",
+      "Истражите пресек квантног рачунарства и дизајна игара. Направите игре или интерактивна искуства која користе квантно рачунарство, црпе инспирацију из квантних концепата или помажу играчима да их разумеју кроз игру.",
+    "Quantum Security & Telecom": "Квантна безбедност и телекомуникације",
     "Explore how quantum technologies could support secure communications and telecommunications networks. Develop projects that investigate or simulate applications such as quantum key distribution, quantum random number generation, or quantum networking, connecting these ideas to challenges in protecting and transmitting information.":
-      "Istražite kako kvantne tehnologije mogu da podrže bezbednu komunikaciju i telekomunikacione mreže. Razvijte projekte koji istražuju ili simuliraju primene kao što su kvantna distribucija ključeva, kvantno generisanje slučajnih brojeva ili kvantno umrežavanje, povezujući ove ideje sa izazovima zaštite i prenosa informacija.",
+      "Истражите како квантне технологије могу да подрже безбедну комуникацију и телекомуникационе мреже. Развијте пројекте који истражују или симулирају примене као што су квантна дистрибуција кључева, квантно генерисање случајних бројева или квантно умрежавање, повезујући ове идеје са изазовима заштите и преноса информација.",
 
-    /* ── Registration ── */
-    "Registration": "Prijava",
-    "Save your seat.": "Rezervišite svoje mesto.",
+    /* ── Registration form ── */
+    "Registration": "Пријава",
+    "Save your seat.": "Резервишите своје место.",
     "Free, at the University of Belgrade — join in the room or online. Register for the lecture day on 21 November — and raise your hand for the hackathon on 28 November, where places are limited and selected by application.":
-      "Besplatno, na Univerzitetu u Beogradu — pridružite se u sali ili onlajn. Prijavite se za dan predavanja 21. novembra i javite se za hakaton 28. novembra, gde je broj mesta ograničen, a učesnici se biraju na osnovu prijave.",
-    "Full name": "Ime i prezime",
-    "Email": "Imejl",
-    "University / organization": "Univerzitet / organizacija",
-    "I am a…": "Ja sam…",
-    "Select one": "Izaberite",
-    "Undergraduate student": "Student osnovnih studija",
-    "Master’s student": "Student master studija",
-    "PhD student": "Doktorand",
-    "Researcher / academic": "Istraživač / akademski radnik",
-    "Industry professional": "Profesionalac iz industrije",
-    "Other": "Drugo",
-    "Experience with quantum / Qiskit": "Iskustvo sa kvantnim računarstvom / Qiskit-om",
-    "New to quantum — starting from zero": "Početnik — krećem od nule",
-    "Some exposure — courses, videos, or tutorials": "Nešto iskustva — kursevi, video-snimci ili tutorijali",
-    "Hands-on — I’ve written Qiskit or similar code": "Praktično iskustvo — pisao/la sam Qiskit ili sličan kod",
-    "Registering for": "Prijavljujem se za",
-    "Lecture day · Saturday 21 November": "Dan predavanja · subota, 21. novembar",
+      "Бесплатно, на Универзитету у Београду — придружите се у сали или онлајн. Пријавите се за дан предавања 21. новембра и јавите се за хакатон 28. новембра, где је број места ограничен, а учесници се бирају на основу пријаве.",
+    "Full name": "Име и презиме",
+    "Email": "Имејл",
+    "you@university.rs": "vi@fakultet.rs",
+    "University / organization": "Универзитет / организација",
+    "I am a…": "Ја сам…",
+    "Select one": "Изаберите",
+    "Undergraduate student": "Студент основних студија",
+    "Master’s student": "Студент мастер студија",
+    "PhD student": "Докторант",
+    "Researcher / academic": "Истраживач / академски радник",
+    "Industry professional": "Професионалац из индустрије",
+    "Other": "Друго",
+    "Experience with quantum / Qiskit": "Искуство у квантном рачунарству / Qiskit-у",
+    "New to quantum — starting from zero": "Почетник - крећем од нуле",
+    "Some exposure — courses, videos, or tutorials":
+      "Нешто искуства - курсеви, видео-снимци или туторијали",
+    "Hands-on — I’ve written Qiskit or similar code":
+      "Практично искуство - писао/ла сам Qiskit или сличан код",
+    "Registering for": "Пријављујем се за",
+    "Lecture day · Saturday 21 November": "Дан предавања · субота, 21. новембар",
     "Hackathon application · Saturday 28 November (limited places)":
-      "Prijava za hakaton · subota, 28. novembar (ograničen broj mesta)",
-    "Anything we should know?": "Nešto što treba da znamo?",
-    "Optional": "Opciono",
-    "Accessibility needs, dietary notes, questions…": "Potrebe pristupačnosti, ishrana, pitanja…",
+      "Пријава за хакатон · субота, 28. новембар (ограничен број места)",
+    "Anything we should know?": "Нешто што треба да знамо?",
+    "Optional": "Опционо",
+    "Accessibility needs, dietary notes, questions…": "Потребе приступачности, исхрана, питања…",
     "Your details are used for event organization only.":
-      "Vaši podaci se koriste isključivo za organizaciju događaja.",
+      "Ваши подаци се користе искључиво за организацију догађаја.",
 
-    /* Form status messages (script.js) */
-    "Pick at least one: the lecture day, the hackathon application, or both.":
-      "Izaberite bar jedno: dan predavanja, prijavu za hakaton ili oboje.",
-    "Sending…": "Šalje se…",
-    "You're registered — see you in Belgrade. Watch your inbox for confirmation and event details.":
-      "Prijava je primljena — vidimo se u Beogradu. Potvrda i detalji stižu na imejl.",
-    "You're registered. Watch your inbox for confirmation.":
-      "Prijava je primljena. Potvrda stiže na imejl.",
-    "Something interfered. Try again in a moment.":
-      "Došlo je do greške. Pokušajte ponovo za trenutak.",
-    "Registration isn't connected to a backend yet — add your form endpoint to data-endpoint in index.html (see README).":
-      "Prijava još nije povezana sa serverom — dodajte adresu forme u data-endpoint u index.html (vidi README).",
-
-    /* ── Session pages ── */
-    "← Full program": "← Ceo program",
-    "Speakers": "Predavači",
-    "The organizing team": "Organizacioni tim",
-    "Announced soon": "Uskoro objavljujemo",
-    "Joining virtually": "Učestvuje onlajn",
+    /* ── Session pages — shared ── */
+    "← Full program": "← Цео програм",
+    "Saturday 21 November 2026": "Субота, 21. новембар 2026",
+    "University of Belgrade": "Београдски Универзитет",
+    "Speakers": "Предавачи",
+    "Register for the lecture day": "Пријави се за дан предавања",
+    "← Back to the program": "← Назад на програм",
+    "Announced soon": "Ускоро објављујемо",
     "Speakers for this session are confirmed soon — the slot and its content are set. Register and we’ll email you when they’re announced.":
-      "Predavači za ovu sesiju biće uskoro potvrđeni — termin i sadržaj su utvrđeni. Prijavite se i javićemo vam imejlom čim budu objavljeni.",
-    "Register for the lecture day": "Prijavi se za dan predavanja",
-    "← Back to the program": "← Nazad na program",
-    "Saturday 21 November 2026": "subota, 21. novembar 2026.",
-    "University of Belgrade": "Univerzitet u Beogradu",
-    "Loading…": "Učitavanje…",
-    "Session not found": "Sesija nije pronađena",
+      "Предавачи за ову сесију биће ускоро потврђени — термин и садржај су утврђени. Пријавите се и јавићемо вам имејлом чим буду објављени.",
+    "The organizing team": "Организациони тим",
 
-    /* Session descriptions */
+    /* ── Session pages — titles and bodies ── */
+    "Welcome and Serbia’s quantum opportunity · Qiskit Fall Fest Serbia 2026":
+      "Добродошлица и квантна прилика за Србију · Qiskit Fall Fest Serbia 2026",
     "Discover how Serbia’s research, talent and growing technology community can contribute to the emerging quantum ecosystem. This opening session will explore potential quantum applications and how they could connect with Serbia’s scientific strengths, industries and local needs. It will also examine the role of education, collaboration and experimentation in building local quantum capabilities, and introduce the organizations bringing this initiative together. Participants will hear how the lecture day and upcoming hackathon connect foundational learning with opportunities to develop ideas, meet collaborators and get involved.":
-      "Otkrijte kako istraživanja, talenat i rastuća tehnološka zajednica u Srbiji mogu da doprinesu kvantnom ekosistemu u nastajanju. Ova uvodna sesija istražuje moguće primene kvantnih tehnologija i načine na koje se one povezuju sa naučnim snagama, industrijama i lokalnim potrebama Srbije. Takođe se bavi ulogom obrazovanja, saradnje i eksperimentisanja u izgradnji domaćih kvantnih kapaciteta i predstavlja organizacije koje stoje iza ove inicijative. Učesnici će čuti kako dan predavanja i predstojeći hakaton povezuju osnovno znanje sa prilikama da razviju ideje, upoznaju saradnike i uključe se.",
+      "Откријте како истраживања, таленат и растућа технолошка заједница у Србији могу да допринесу квантном екосистему у настајању. Ова уводна сесија истражује могуће примене квантних технологија и начине на које се оне повезују са научним снагама, индустријама и локалним потребама Србије. Такође се бави улогом образовања, сарадње и експериментисања у изградњи домаћих квантних капацитета и представља организације које стоје иза ове иницијативе. Учесници ће чути како дан предавања и предстојећи хакатон повезују основно знање са приликама да развију идеје, упознају сараднике и укључе се.",
+    "Quantum 101 · Qiskit Fall Fest Serbia 2026":
+      "Квантно рачунарство 101 · Qiskit Fall Fest Serbia 2026",
     "What makes a quantum computer different from a classical computer? This introductory session will explore qubits, superposition, entanglement and measurement, building a foundation for understanding how quantum computation works. Participants will learn how quantum gates and circuits bring these concepts together, while gaining perspective on the possibilities and limitations of quantum computing. The session is designed to make the core ideas approachable for those encountering the subject for the first time.":
-      "Po čemu se kvantni računar razlikuje od klasičnog? Ova uvodna sesija istražuje kjubite, superpoziciju, spregnutost i merenje i gradi osnovu za razumevanje kvantnog računanja. Učesnici će naučiti kako kvantna logička kola i kvantna kola povezuju ove koncepte, uz uvid u mogućnosti i ograničenja kvantnog računarstva. Sesija je osmišljena tako da ključne ideje budu pristupačne onima koji se sa temom susreću po prvi put.",
+      "По чему се квантни рачунар разликује од класичног? Ова уводна сесија истражује кјубите, суперпозицију, сплетеност и мерење и гради основу за разумевање квантног рачунања. Учесници ће научити како квантна логичка кола и квантна кола повезују ове концепте, уз увид у могућности и ограничења квантног рачунарства. Сесија је осмишљена тако да кључне идеје буду приступачне онима који се са темом сусрећу по први пут.",
+    "Qiskit 101: Getting started with quantum programming · Qiskit Fall Fest Serbia 2026":
+      "Qiskit 101: Први кораци у квантном програмирању · Qiskit Fall Fest Serbia 2026",
     "Explore how the ideas behind quantum computing translate into code using Qiskit, an open-source toolkit for quantum programming. This introductory session will walk through the building blocks of quantum circuits and explain how to construct, run and interpret simple examples. Participants will become familiar with the basic workflow of quantum programming and how measurement results relate to the circuits they create. The session will provide a starting point for further learning and experimentation ahead of the hackathon.":
-      "Istražite kako se ideje kvantnog računarstva prevode u kod uz Qiskit, alat otvorenog koda za kvantno programiranje. Ova uvodna sesija prolazi kroz gradivne elemente kvantnih kola i objašnjava kako da ih sastavite, pokrenete i protumačite na jednostavnim primerima. Učesnici će se upoznati sa osnovnim tokom rada u kvantnom programiranju i sa tim kako se rezultati merenja odnose na kola koja prave. Sesija je polazna tačka za dalje učenje i eksperimentisanje pred hakaton.",
+      "Истражите како се идеје квантног рачунарства преводе у код уз Qiskit, алат отвореног кода за квантно програмирање. Ова уводна сесија пролази кроз градивне елементе квантних кола и објашњава како да их саставите, покренете и протумачите на једноставним примерима. Учесници ће се упознати са основним током рада у квантном програмирању и са тим како се резултати мерења односе на кола која праве. Сесија је полазна тачка за даље учење и експериментисање пред хакатон.",
+    "Joining virtually": "Учествује онлајн",
+    "Quantum Security and Post Quantum Cryptography · Qiskit Fall Fest Serbia 2026":
+      "Квантна безбедност и постквантна криптографија · Qiskit Fall Fest Serbia 2026",
     "How does quantum computing change the way we think about protecting information? This session will introduce the risks that future quantum computers could pose to widely used cryptographic systems and explain the purpose of post-quantum cryptography. Participants will explore the distinction between quantum approaches to secure communication and cryptographic algorithms designed to resist quantum attacks on classical computers. The discussion will connect these ideas to practical security challenges and applications in telecommunications.":
-      "Kako kvantno računarstvo menja način na koji razmišljamo o zaštiti informacija? Ova sesija predstavlja rizike koje budući kvantni računari mogu da donesu široko korišćenim kriptografskim sistemima i objašnjava svrhu postkvantne kriptografije. Učesnici će istražiti razliku između kvantnih pristupa bezbednoj komunikaciji i kriptografskih algoritama napravljenih da odole kvantnim napadima, a koji rade na klasičnim računarima. Diskusija povezuje ove ideje sa praktičnim bezbednosnim izazovima i primenama u telekomunikacijama.",
+      "Како квантно рачунарство мења начин на који размишљамо о заштити информација? Ова сесија представља ризике које будући квантни рачунари могу да донесу широко коришћеним криптографским системима и објашњава сврху постквантне криптографије. Учесници ће истражити разлику између квантних приступа безбедној комуникацији и криптографских алгоритама направљених да одоле квантним нападима, а који раде на класичним рачунарима. Дискусија повезује ове идеје са практичним безбедносним изазовима и применама у телекомуникацијама.",
+    "Quantum Computing and Gaming · Qiskit Fall Fest Serbia 2026":
+      "Квантно рачунарство и видео игре · Qiskit Fall Fest Serbia 2026",
     "Games offer a creative way to explore quantum computing and make unfamiliar concepts tangible. This session will examine how quantum ideas such as superposition, measurement and entanglement can inspire game mechanics and interactive experiences. Participants will explore the possibilities of using quantum computation within games, alongside using games to explain quantum concepts.":
-      "Igre su kreativan način da se istraži kvantno računarstvo i da nepoznati koncepti postanu opipljivi. Ova sesija razmatra kako kvantne ideje poput superpozicije, merenja i spregnutosti mogu da inspirišu mehanike igara i interaktivna iskustva. Učesnici će istražiti mogućnosti korišćenja kvantnog računanja u igrama, kao i korišćenja igara za objašnjavanje kvantnih koncepata.",
+      "Игре су креативан начин да се истражи квантно рачунарство и да непознати концепти постану опипљиви. Ова сесија разматра како квантне идеје попут суперпозиције, мерења и сплетеност могу да инспиришу механике игара и интерактивна искуства. Учесници ће истражити могућности коришћења квантног рачунања у играма, као и коришћења игара за објашњавање квантних концепата.",
+    "Questions, next steps and closing remarks · Qiskit Fall Fest Serbia 2026":
+      "Питања, наредни кораци и затварање · Qiskit Fall Fest Serbia 2026",
     "Bring your questions and connect the day’s discussions to your own interests and ideas. The organizing team will outline the next steps for the November 28 hackathon, including the security and gaming tracks, preparation resources and opportunities to connect with teammates. Participants will leave with a clearer sense of how to continue learning and prepare to turn an initial idea into a project.":
-      "Donesite svoja pitanja i povežite teme dana sa sopstvenim interesovanjima i idejama. Organizacioni tim predstaviće naredne korake za hakaton 28. novembra, uključujući kategorije bezbednosti i igara, materijale za pripremu i prilike da pronađete saigrače. Učesnici odlaze sa jasnijom predstavom o tome kako da nastave da uče i kako da početnu ideju pretvore u projekat.",
+      "Дођите са својим питањима и повежите теме дана са сопственим интересовањима и идејама. Организациони тим представиће наредне кораке за хакатон 28. новембра, укључујући категорије безбедности и игара, материјале за припрему и прилике да пронађете партнере. Учесници одлазе са јаснијом представом о томе како да наставе да уче и како да почетну идеју претворе у пројекат.",
 
     /* ── Blog ── */
-    "The blog": "Blog",
-    "Dispatches from the road to November.": "Zapisi na putu ka novembru.",
+    "Blog — Qiskit Fall Fest Serbia 2026": "Блог — Qiskit Fall Fest Serbia 2026",
+    "The blog": "Блог",
+    "Dispatches from the road to November.": "Записи на путу ка новембру.",
     "Announcements, speaker news, and Qiskit resources — everything leading up to the two Saturdays in Belgrade.":
-      "Najave, vesti o predavačima i Qiskit materijali — sve što prethodi dvema subotama u Beogradu.",
-    "Loading posts…": "Učitavanje tekstova…",
-    "Read →": "Pročitaj →",
-    "← The blog": "← Blog",
-    "← All posts": "← Svi tekstovi",
-    "No posts yet — the first dispatch lands soon.": "Još nema tekstova — prvi stiže uskoro.",
-    "Couldn’t load posts right now — try a refresh.":
-      "Trenutno nije moguće učitati tekstove — osvežite stranicu.",
-    "Post not found": "Tekst nije pronađen",
+      "Најаве, вести о предавачима и Qiskit материјали — све што претходи двема суботама у Београду.",
+    "Read →": "Прочитај →",
+    "← The blog": "← Блог",
+    "← All posts": "← Сви текстови",
 
-    /* ── 404 ── */
-    "404 · Measurement collapsed": "404 · Merenje je kolapsiralo",
+    /* ── Explicit keys, page parts and states not in the worksheet ── */
+    "Serbia’s": "Српски",
+    "Sat": "суб",
+    "Nov": "нов",
+    "badge.day.21": "21.",
+    "badge.day.28": "28.",
+    "form.submit": "Пријавите се",
+    "session.quantum-101.title": "Увод у квантно рачунарство",
+    "Pick at least one: the lecture day, the hackathon application, or both.":
+      "Изаберите бар једно: дан предавања, пријаву за хакатон или обоје.",
+    "Sending…": "Шаље се…",
+    "You’re registered — see you in Belgrade. Watch your inbox for confirmation and event details.":
+      "Пријава је примљена — видимо се у Београду. Потврда и детаљи стижу на имејл.",
+    "You’re registered. Watch your inbox for confirmation.":
+      "Пријава је примљена. Потврда стиже на имејл.",
+    "Something interfered. Try again in a moment.":
+      "Дошло је до грешке. Покушајте поново за тренутак.",
+    "Registration isn’t connected to a backend yet — add your form endpoint to data-endpoint in index.html (see README).":
+      "Пријава још није повезана са сервером — додајте адресу форме у data-endpoint у index.html (види README).",
+    "Loading…": "Учитавање…",
+    "Session not found": "Сесија није пронађена",
+    "Loading posts…": "Учитавање текстова…",
+    "No posts yet — the first dispatch lands soon.": "Још нема текстова — први стиже ускоро.",
+    "Couldn’t load posts right now — try a refresh.":
+      "Тренутно није могуће учитати текстове — освежите страницу.",
+    "Post not found": "Текст није пронађен",
+    "Couldn’t load this post": "Није могуће учитати овај текст",
+    "404 · Measurement collapsed": "404 · Мерење је колапсирало",
     "This page isn’t in any state we can observe.":
-      "Ova stranica nije ni u jednom stanju koje možemo da izmerimo.",
+      "Ова страница није ни у једном стању које можемо да измеримо.",
     "The link may be old, or the page moved. Everything about the two Saturdays in Belgrade is a click away.":
-      "Link je možda zastareo ili je stranica premeštena. Sve o dvema subotama u Beogradu je na jedan klik.",
-    "Read the blog →": "Pročitaj blog →",
+      "Линк је можда застарео или је страница премештена. Све о двема суботама у Београду је на један клик.",
+    "Read the blog →": "Прочитај блог →",
+    "Page not found": "Страница није пронађена",
+    "Page not found — Qiskit Fall Fest Serbia 2026":
+      "Страница није пронађена — Qiskit Fall Fest Serbia 2026",
+    "Where to go": "Куда даље",
+    "Post": "Текст",
+    "Posts": "Текстови",
+    "Post content": "Садржај текста",
+    "Session details": "Детаљи сесије",
+    "Blog navigation": "Навигација блога",
   },
 };
 
@@ -211,75 +265,82 @@ window.I18N = {
   var KEY = "qff-lang";
   var LANGS = ["en", "sr", "sr-cyrl"];
   var ATTRS = ["placeholder", "aria-label", "title", "alt"];
-  var saved = [];          // English originals, so switching back needs no reload
+  var saved = [];          // originals, so switching back needs no reload
   var current = "en";
 
   function norm(s) { return s.replace(/\s+/g, " ").trim(); }
   function dict() { return (window.I18N && window.I18N.TEXT) || {}; }
 
-  /* ──────── Serbian Latin → Cyrillic ────────
-     Serbian is digraphia: the two scripts map one to one, so the Cyrillic
-     site is derived from the Latin translations rather than maintained as
-     a second dictionary — fix the Latin once and both follow.
+  /* ──────── Serbian Cyrillic → Latin ────────
+     Strictly one to one, so this is a lookup and nothing more. Characters
+     that aren't Serbian Cyrillic — Latin brand names, digits, punctuation,
+     URLs, code — fall through untouched. */
 
-     Brand names, code and URLs stay in Latin (standard practice in
-     Serbian Cyrillic text), as do personal names, which are never
-     dictionary entries and so are never touched. */
-
-  var KEEP = [
-    "Qiskit", "qiskit", "IBM", "Quantum", "Universum", "Labs", "Serbia",
-    "GitHub", "Fall", "Fest", "CQT", "API", "Advocate", "Python",
-    "Claudia", "Zendejas-Morales", "pip", "install", "EN", "SR",
-    "data-endpoint", "index.html", "README",
-  ];
-  function esc(w) { return w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
-  var KEEP_RE = new RegExp(
-    "(https?:\\/\\/\\S+|[^\\s<>()]+@[^\\s<>()]+\\.[A-Za-z]{2,}|\\b(?:" +
-      KEEP.map(esc).join("|") + ")\\b)", "g"
-  );
-
-  var DIGRAPHS = { "Lj": "Љ", "LJ": "Љ", "lj": "љ", "Nj": "Њ", "NJ": "Њ", "nj": "њ",
-                   "Dž": "Џ", "DŽ": "Џ", "dž": "џ" };
-  var LETTERS = {
-    "A":"А","B":"Б","C":"Ц","Č":"Ч","Ć":"Ћ","D":"Д","Đ":"Ђ","E":"Е","F":"Ф","G":"Г",
-    "H":"Х","I":"И","J":"Ј","K":"К","L":"Л","M":"М","N":"Н","O":"О","P":"П","R":"Р",
-    "S":"С","Š":"Ш","T":"Т","U":"У","V":"В","Z":"З","Ž":"Ж",
-    "a":"а","b":"б","c":"ц","č":"ч","ć":"ћ","d":"д","đ":"ђ","e":"е","f":"ф","g":"г",
-    "h":"х","i":"и","j":"ј","k":"к","l":"л","m":"м","n":"н","o":"о","p":"п","r":"р",
-    "s":"с","š":"ш","t":"т","u":"у","v":"в","z":"з","ž":"ж"
+  var C2L = {
+    "А":"A","Б":"B","В":"V","Г":"G","Д":"D","Ђ":"Đ","Е":"E","Ж":"Ž","З":"Z","И":"I",
+    "Ј":"J","К":"K","Л":"L","Љ":"Lj","М":"M","Н":"N","Њ":"Nj","О":"O","П":"P","Р":"R",
+    "С":"S","Т":"T","Ћ":"Ć","У":"U","Ф":"F","Х":"H","Ц":"C","Ч":"Č","Џ":"Dž","Ш":"Š",
+    "а":"a","б":"b","в":"v","г":"g","д":"d","ђ":"đ","е":"e","ж":"ž","з":"z","и":"i",
+    "ј":"j","к":"k","л":"l","љ":"lj","м":"m","н":"n","њ":"nj","о":"o","п":"p","р":"r",
+    "с":"s","т":"t","ћ":"ć","у":"u","ф":"f","х":"h","ц":"c","ч":"č","џ":"dž","ш":"š"
   };
 
-  function transliterateRun(text) {
+  /* Names Serbian writes phonetically in Cyrillic but that keep their own
+     spelling in Latin. The capture takes any Cyrillic case ending, so
+     "Линктину" becomes "LinkedIn-u" — the hyphen style used site-wide. */
+  var BRANDS = [["Линктин", "LinkedIn"], ["Пајтон", "Python"]];
+
+  function isUpper(ch) {
+    return !!ch && ch !== ch.toLowerCase() && ch === ch.toUpperCase();
+  }
+
+  function letters(text) {
     var out = "";
     for (var i = 0; i < text.length; i++) {
-      var pair = text.substr(i, 2);
-      if (DIGRAPHS[pair]) { out += DIGRAPHS[pair]; i++; continue; }
       var ch = text.charAt(i);
-      out += LETTERS[ch] || ch;
+      var lat = C2L[ch];
+      if (lat === undefined) { out += ch; continue; }
+      // Љ is "Lj" in Ljubav but "LJ" in LJUBAV
+      if (lat.length === 2 && isUpper(lat.charAt(0)) && isUpper(text.charAt(i + 1))) {
+        lat = lat.toUpperCase();
+      }
+      out += lat;
     }
     return out;
   }
 
-  function toCyrillic(text) {
+  function toLatin(text) {
     if (!text) return text;
-    return text.split(KEEP_RE).map(function (part, i) {
-      // split() with one capture group yields: text, kept, text, kept, …
-      return i % 2 ? part : transliterateRun(part);
-    }).join("");
+    for (var i = 0; i < BRANDS.length; i++) {
+      text = text.replace(
+        new RegExp(BRANDS[i][0] + "([\\u0400-\\u04FF]*)", "g"),
+        (function (name) {
+          return function (_, ending) {
+            return name + (ending ? "-" + letters(ending) : "");
+          };
+        })(BRANDS[i][1])
+      );
+    }
+    return letters(text);
   }
 
+  /* A Serbian string in the script the reader asked for. */
   function localize(value) {
-    return current === "sr-cyrl" ? toCyrillic(value) : value;
+    return current === "sr" ? toLatin(value) : value;
   }
 
   /* ──────── Applying ──────── */
 
-  function textWalker(root) {
+  function textWalker(root, skip) {
     return document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
       acceptNode: function (n) {
         var p = n.parentNode;
         if (!p || p.nodeName === "SCRIPT" || p.nodeName === "STYLE") return NodeFilter.FILTER_REJECT;
         if (p.closest && p.closest("[data-no-i18n]")) return NodeFilter.FILTER_REJECT;
+        // text already set from an explicit data-i18n key
+        if (skip && skip.length && p.closest && skip.indexOf(p.closest("[data-i18n]")) >= 0) {
+          return NodeFilter.FILTER_REJECT;
+        }
         return n.nodeValue && n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
       },
     });
@@ -287,7 +348,22 @@ window.I18N = {
 
   function translate(root) {
     var D = dict();
-    var walker = textWalker(root);
+
+    /* Explicit keys first: data-i18n names an entry directly, for the few
+       places where the same English needs two different Serbian strings.
+       An element whose key isn't in the dictionary falls through to the
+       ordinary text lookup below. */
+    var keyed = [];
+    var marked = root.querySelectorAll ? root.querySelectorAll("[data-i18n]") : [];
+    Array.prototype.forEach.call(marked, function (el) {
+      var tr = D[el.getAttribute("data-i18n")];
+      if (!tr) return;
+      saved.push({ el: el, text: true, value: el.textContent });
+      el.textContent = localize(tr);
+      keyed.push(el);
+    });
+
+    var walker = textWalker(root, keyed);
     var node;
     while ((node = walker.nextNode())) {
       var raw = node.nodeValue;
@@ -296,33 +372,42 @@ window.I18N = {
       saved.push({ node: node, value: raw });
       node.nodeValue = raw.match(/^\s*/)[0] + localize(tr) + raw.match(/\s*$/)[0];
     }
+
     ATTRS.forEach(function (attr) {
       var els = root.querySelectorAll ? root.querySelectorAll("[" + attr + "]") : [];
       Array.prototype.forEach.call(els, function (el) {
         var v = el.getAttribute(attr);
-        var tr = v && D[norm(v)];
-        if (!tr) return;
+        var t = v && D[norm(v)];
+        if (!t) return;
         saved.push({ el: el, attr: attr, value: v });
-        el.setAttribute(attr, localize(tr));
+        el.setAttribute(attr, localize(t));
       });
     });
+
+    var pageTitle = D[norm(document.title)];
+    if (pageTitle) {
+      saved.push({ title: true, value: document.title });
+      document.title = localize(pageTitle);
+    }
   }
 
-  /* Content already written in Serbian Latin (blog posts) — transliterate
-     the whole subtree rather than looking strings up. */
+  /* Content already written in Serbian Cyrillic (blog posts) — put the
+     whole subtree into the reader's script rather than looking strings up. */
   function transliterateTree(root) {
-    if (current !== "sr-cyrl" || !root) return;
+    if (current !== "sr" || !root) return;
     var walker = textWalker(root);
     var node;
     while ((node = walker.nextNode())) {
-      node.nodeValue = toCyrillic(node.nodeValue);
+      node.nodeValue = toLatin(node.nodeValue);
     }
   }
 
   function restore() {
     for (var i = saved.length - 1; i >= 0; i--) {
       var s = saved[i];
-      if (s.node) s.node.nodeValue = s.value;
+      if (s.title) document.title = s.value;
+      else if (s.node) s.node.nodeValue = s.value;
+      else if (s.text) s.el.textContent = s.value;
       else s.el.setAttribute(s.attr, s.value);
     }
     saved = [];
@@ -346,10 +431,14 @@ window.I18N = {
     window.dispatchEvent(new CustomEvent("langchange", { detail: { lang: current } }));
   }
 
-  /* Re-apply after content is rendered by people.js / sessions / blog */
-  window.applyI18n = function () { if (current !== "en") translate(document.body); };
+  /* Re-apply after content is rendered by people.js / sessions / blog, or
+     after a script writes fresh English text (pass that element as root). */
+  window.applyI18n = function (root) { if (current !== "en") translate(root || document.body); };
   window.i18nTransliterate = function (el) { transliterateTree(el); };
-  window.i18nToCyrillic = toCyrillic;
+  /* An already-Serbian string, in the current script — for text that never
+     reaches the DOM as a node, such as document.title. */
+  window.i18nScript = function (text) { return current === "en" ? text : localize(text); };
+  window.i18nToLatin = toLatin;
   window.currentLang = function () { return current; };
 
   function init() {

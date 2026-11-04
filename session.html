@@ -103,6 +103,9 @@
       function render() {
       document.title = session.title + " · Qiskit Fall Fest Serbia 2026";
       titleEl.textContent = session.title;
+      // Lets a session carry a translated title of its own where the program
+      // table's shorter label won't do. No dictionary key, no override.
+      titleEl.setAttribute("data-i18n", "session." + session.id + ".title");
 
       ["Saturday 21 November 2026", session.time, "University of Belgrade"].forEach(function (text) {
         var chip = document.createElement("span");

@@ -6,6 +6,12 @@
    Fields: slug (url-safe, unique), title, date (YYYY-MM-DD), excerpt
    (plain text, one or two sentences), html (the post body — headings
    start at <h2>).
+
+   Serbian: title_sr, excerpt_sr and html_sr hold the post in CYRILLIC.
+   The Latin version is transliterated from it at render time (see
+   i18n.js), so write Serbian once, in Cyrillic, and both scripts follow.
+   Latin inside those strings — Qiskit, IBM, href="…", <code> — is left
+   alone by the transliterator, so markup and brand names are safe.
    ──────────────────────────────────────────────────────────────────────── */
 
 window.LOCAL_POSTS = [
@@ -22,15 +28,15 @@ window.LOCAL_POSTS = [
       "<p>The event is organized by the Center for Quantum Technologies of Serbia and Universum Labs, as part of the IBM Qiskit Fall Fest program.</p>",
       "<p><a href=\"/#register\">Registration is open</a> — the lecture day is free and open, and the same form lets you raise your hand for the hackathon. Challenge tracks, speakers, and the exact room are announced here and by email as they're confirmed.</p>",
     ].join("\n"),
-    title_sr: "Najava: Qiskit Fall Fest Srbija 2026",
+    title_sr: "Најава: Qiskit Fall Fest Србија 2026",
     excerpt_sr:
-      "Dve subote u Beogradu ovog novembra: ceo dan Qiskit predavanja i vežbi, pa prvi primenjeni kvantni hakaton u Srbiji. Prijave su otvorene.",
+      "Две суботе у Београду овог новембра: цео дан Qiskit предавања и вежби, па први примењени квантни хакатон у Србији. Пријаве су отворене.",
     html_sr: [
-      "<p>Sa zadovoljstvom objavljujemo da se Srbija ove godine pridružuje Qiskit Fall Fest-u — godišnjoj svetskoj seriji kvantnih događaja koje vodi zajednica okupljena oko IBM Quantum-a — sa dve subote u Beogradu ovog novembra.</p>",
-      "<p>U <strong>subotu, 21. novembra</strong>, ceo dan nastave na Univerzitetu u Beogradu, uživo ili onlajn: osnove kvantnog računarstva pre podne i dvočasovni seminar o programiranju u Qiskit-u oko podneva, sa predavačima iz IBM Quantum-a i srpske kvantne zajednice. Predznanje iz kvantnog računarstva nije potrebno — dan je osmišljen tako da vas vodi od nule do pokretanja pravih kvantnih kola.</p>",
-      "<p>U <strong>subotu, 28. novembra</strong>, održava se prvi primenjeni kvantni hakaton u Srbiji: jedan dan, mali timovi i kategorije izazova zasnovane na stvarnim kvantnim slučajevima upotrebe značajnim za Srbiju. Broj mesta je ograničen na oko pedeset, a učesnici se biraju na osnovu prijave.</p>",
-      "<p>Događaj organizuju Centar za kvantne tehnologije Srbije i Universum Labs, u okviru programa IBM Qiskit Fall Fest.</p>",
-      "<p><a href=\"/#register\">Prijave su otvorene</a> — dan predavanja je besplatan i otvoren za sve, a istom prijavom se javljate i za hakaton. Kategorije izazova, predavači i tačna sala objavljuju se ovde i putem imejla čim budu potvrđeni.</p>",
+      "<p>Са задовољством објављујемо да се Србија ове године придружује Qiskit Fall Fest-у — годишњој светској серији квантних догађаја које води заједница окупљена око IBM Quantum-а — са две суботе у Београду овог новембра.</p>",
+      "<p>У <strong>суботу, 21. новембра</strong>, цео дан наставе на Универзитету у Београду, уживо или онлајн: основе квантног рачунарства пре подне и двочасовни семинар о програмирању у Qiskit-у око поднева, са предавачима из IBM Quantum-а и српске квантне заједнице. Предзнање из квантног рачунарства није потребно — дан је осмишљен тако да вас води од нуле до покретања правих квантних кола.</p>",
+      "<p>У <strong>суботу, 28. новембра</strong>, одржава се први примењени квантни хакатон у Србији: један дан, мали тимови и категорије изазова засноване на стварним квантним случајевима употребе значајним за Србију. Број места је ограничен на око педесет, а учесници се бирају на основу пријаве.</p>",
+      "<p>Догађај организују Центар за квантне технологије Србије и Universum Labs, у оквиру програма IBM Qiskit Fall Fest.</p>",
+      "<p><a href=\"/#register\">Пријаве су отворене</a> — дан предавања је бесплатан и отворен за све, а истом пријавом се јављате и за хакатон. Категорије изазова, предавачи и тачна сала објављују се овде и путем имејла чим буду потврђени.</p>",
     ].join("\n"),
   },
   {
@@ -51,20 +57,20 @@ window.LOCAL_POSTS = [
       "<p>If you can build a small circuit, run it on a simulator, and read the results, you're ahead of the curve — the Qiskit 101 seminar on lecture day picks up from there. And if none of those words mean anything yet: come anyway. The morning sessions assume nothing.</p>",
       "<p>Questions before then? Use the notes field when you <a href=\"/#register\">register</a> — we read everything.</p>",
     ].join("\n"),
-    title_sr: "Priprema za novembar: vaš Qiskit početni paket",
+    title_sr: "Припрема за новембар: ваш Qiskit почетни пакет",
     excerpt_sr:
-      "Sve na Fall Fest-u i hakatonu radi se u Qiskit-u, koji je besplatan i otvorenog koda. Evo odakle da krenete pre novembra.",
+      "Све на Fall Fest-у и хакатону ради се у Qiskit-у, који је бесплатан и отвореног кода. Ево одакле да кренете пре новембра.",
     html_sr: [
-      "<p>Sve na Fall Fest-u i hakatonu radi se u <strong>Qiskit-u</strong>, IBM-ovom okviru otvorenog koda za kvantno računarstvo. Besplatan je, radi se u Pajtonu i nije vam potrebno nikakvo kvantno predznanje za prve korake — upravo tome služi dan predavanja. Ali ako želite da dođete zagrejani, evo kratkog spiska.</p>",
-      "<h2>Počnite odavde</h2>",
+      "<p>Све на Fall Fest-у и хакатону ради се у <strong>Qiskit-у</strong>, IBM-овој библиотеци отвореног кода за квантно рачунарство. Бесплатан је, ради се у Пајтону и није вам потребно никакво квантно предзнање за прве кораке — управо томе служи дан предавања. Али ако желите да дођете припремљени, ево кратког списка.</p>",
+      "<h2>Почните одавде</h2>",
       "<ul>",
-      "<li><a href=\"https://learning.quantum.ibm.com\" target=\"_blank\" rel=\"noopener noreferrer\">IBM Quantum Learning</a> — besplatni, strukturirani kursevi od „šta je kjubit” do varijacionih algoritama, sa sveskama koje možete pokrenuti.</li>",
-      "<li><a href=\"https://docs.quantum.ibm.com\" target=\"_blank\" rel=\"noopener noreferrer\">Qiskit dokumentacija</a> — instalacija, tutorijali i API referenca u kojoj ćete provesti hakaton.</li>",
-      "<li><a href=\"https://github.com/Qiskit/qiskit\" target=\"_blank\" rel=\"noopener noreferrer\">Qiskit na GitHub-u</a> — sam okvir; dovoljno je <code>pip install qiskit</code>.</li>",
+      "<li><a href=\"https://learning.quantum.ibm.com\" target=\"_blank\" rel=\"noopener noreferrer\">IBM Quantum Learning</a> — бесплатни, структурирани курсеви од „шта је кјубит” до варијационих алгоритама, са свескама које можете покренути.</li>",
+      "<li><a href=\"https://docs.quantum.ibm.com\" target=\"_blank\" rel=\"noopener noreferrer\">Qiskit документација</a> — инсталација, туторијали и API референца коју ћете користити током хакатона.</li>",
+      "<li><a href=\"https://github.com/Qiskit/qiskit\" target=\"_blank\" rel=\"noopener noreferrer\">Qiskit на GitHub-у</a> — сама библиотека; довољно је <code>pip install qiskit</code>.</li>",
       "</ul>",
-      "<h2>Čemu težiti</h2>",
-      "<p>Ako umete da napravite malo kvantno kolo, pokrenete ga na simulatoru i pročitate rezultate, u prednosti ste — seminar Qiskit 101 na danu predavanja nastavlja odatle. A ako vam ove reči još ništa ne znače: svejedno dođite. Prepodnevne sesije ne pretpostavljaju nikakvo predznanje.</p>",
-      "<p>Imate pitanja pre toga? Iskoristite polje za napomene kada se <a href=\"/#register\">prijavite</a> — čitamo sve.</p>",
+      "<h2>Чему тежити</h2>",
+      "<p>Ако умете да направите мало квантно коло, покренете га на симулатору и прочитате резултате, у предности сте — семинар Qiskit 101 на дану предавања наставља одатле. А ако вам ове речи још ништа не значе: свеједно дођите. Преподневне сесије не претпостављају никакво предзнање.</p>",
+      "<p>Имате питања пре тога? Искористите поље за напомене када се <a href=\"/#register\">пријавите</a> — читамо све.</p>",
     ].join("\n"),
   },
 ];

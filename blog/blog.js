@@ -49,14 +49,16 @@
     return doc.body.innerHTML;
   }
 
-  var SR_MONTHS = ["januar","februar","mart","april","maj","jun",
-                   "jul","avgust","septembar","oktobar","novembar","decembar"];
+  /* Cyrillic, like every other Serbian string on the site; script() hands
+     back the Latin when that's what the reader picked. */
+  var SR_MONTHS = ["јануар","фебруар","март","април","мај","јун",
+                   "јул","август","септембар","октобар","новембар","децембар"];
 
   function formatDate(iso) {
     var d = new Date(iso);
     if (isNaN(d)) return iso;
     if (lang().indexOf("sr") === 0) {
-      return d.getDate() + ". " + SR_MONTHS[d.getMonth()] + " " + d.getFullYear() + ".";
+      return script(d.getDate() + ". " + SR_MONTHS[d.getMonth()] + " " + d.getFullYear() + ".");
     }
     return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   }
@@ -65,9 +67,16 @@
      posts.js — paragraphs there carry links and bold, so they are swapped
      whole rather than string by string. */
   function lang() {
+    if (window.currentLang) return window.currentLang();
     try {
       return new URLSearchParams(location.search).get("lang") || localStorage.getItem("qff-lang") || "en";
     } catch (e) { return "en"; }
+  }
+
+  /* Serbian text that never becomes a DOM node of its own (document.title,
+     a formatted date) still has to follow the chosen script. */
+  function script(text) {
+    return window.i18nScript ? window.i18nScript(text) : text;
   }
 
   function localize(post) {
@@ -171,7 +180,7 @@
           return;
         }
         post = localize(post);
-        document.title = post.title + " · Qiskit Fall Fest Serbia 2026";
+        document.title = script(post.title) + " · Qiskit Fall Fest Serbia 2026";
         titleEl.textContent = post.title;
         metaEl.textContent = formatDate(post.date);
         body.innerHTML = sanitize(post.html);

@@ -139,47 +139,83 @@ pages. `?lang=sr` and `?lang=sr-cyrl` on any URL also work, so a
 Serbian link can be shared directly. The `<html lang>` attribute tracks
 the choice (`en` / `sr-Latn` / `sr-Cyrl`).
 
-### One dictionary, two scripts
+### Serbian is written in Cyrillic; the Latin is derived
 
 All Serbian text lives in **`i18n.js`**, keyed by the exact English
-string as it appears on the page:
+string as it appears on the page — curly apostrophes and all:
 
 ```js
-"Register": "Prijavi se",
+"Register": "Пријави се",
 ```
 
-To fix wording, edit the value. To translate something new, add its
-English text as a key — anything without a key simply stays in English,
-so a miss is never a broken page. The same dictionary covers attributes
-(`placeholder`, `aria-label`, `title`, `alt`).
+To fix wording, edit the Cyrillic value. To translate something new, add
+its English text as a key — anything without a key simply stays in
+English, so a miss is never a broken page. The same dictionary covers
+attributes (`placeholder`, `aria-label`, `title`, `alt`) and the browser
+page title.
 
-**There is no second dictionary for Cyrillic.** Serbian Latin and
-Cyrillic map one to one, so `toCyrillic()` in `i18n.js` transliterates
-the Serbian Latin at render time: digraphs first (`lj → љ`, `nj → њ`,
-`dž → џ`), then single letters. Fix a Serbian string once and both
-scripts are correct.
+**There is no second dictionary for the Latin.** Serbian Cyrillic maps
+one to one onto Serbian Latin, so `toLatin()` transliterates at render
+time: Љ is always `Lj`, Ђ is always `Đ`. Fix a string once and both
+scripts are right.
 
-Transliteration skips anything that must stay in Latin — URLs, email
-addresses, and the words in the `KEEP` list at the top of that block
-(brand names like `Qiskit`, `IBM`, `Universum Labs`; code and file
-names like `pip install`, `index.html`, `data-endpoint`). Add a word to
-`KEEP` if it ever comes out mangled. Personal names are left in Latin
-on purpose, since their Cyrillic spellings (Ђурђић, Чичић) are not
-derivable from the Latin forms used here; add explicit `TEXT` entries if
-they should switch too.
+The Cyrillic is the source and not the other way round because only this
+direction is lossless. Latin `nadživeti` could be `нaдж` or `надџ` and
+only a human knows which; from Cyrillic there is no such question.
+
+It also means Latin inside a Serbian string survives untouched: `Qiskit`
+has no Cyrillic in it, so `Qiskit-у` becomes `Qiskit-u` and the brand is
+never mangled. Markup, URLs, `<code>` and e-mail addresses are safe for
+the same reason — **no list of protected words is needed.** The only
+exceptions are names Serbian spells out phonetically; `Линктин` and
+`Пајтон` are listed in `BRANDS` so the Latin reads LinkedIn and Python.
+
+### Two Serbian strings for one English one
+
+A few English strings need different Serbian depending on where they
+sit. Those elements carry a `data-i18n` attribute naming an explicit key,
+which wins over the text lookup:
+
+| key | why |
+| --- | --- |
+| `form.submit` | "Register" is *Пријави се* in the nav, *Пријавите се* on the submit button |
+| `session.quantum-101.title` | the program table says *Квантно рачунарство 101*, the session page *Увод у квантно рачунарство* |
+| `badge.day.21`, `badge.day.28` | puts the Serbian ordinal period in *суб 21. нов* without flattening the big-number `<span>` |
+
+An element whose key isn't in the dictionary falls through to the normal
+lookup, so adding the attribute is always safe.
 
 ### Rendered content
 
 Blog posts are the exception to the dictionary: their paragraphs contain
 links and bold, so each post carries `title_sr`, `excerpt_sr` and
-`html_sr` fields in `blog/posts.js` and is swapped whole, then
-transliterated for Cyrillic. Dates render with Serbian month names.
-Dynamically rendered content (session pages, organizer cards, blog)
-re-renders on a `langchange` event, so the toggle works everywhere.
+`html_sr` fields in `blog/posts.js` — **in Cyrillic** — and is swapped
+whole, then transliterated for the Latin. Dates render with Serbian
+month names. Dynamically rendered content (session pages, organizer
+cards, blog) re-renders on a `langchange` event, so the toggle works
+everywhere.
 
-**The Serbian is a first pass and should be reviewed by a native
-speaker before it is promoted.** Translation is applied client-side,
-which also means search engines index the English text.
+### Provenance
+
+The Serbian is **Slobodan Cicic's translation worksheet of 14 October
+2026**, 221 items, applied verbatim except for these deliberate changes:
+
+- `рачунарствоу` → `рачунарству` and `референца у коју ћете користити` →
+  `референца коју ћете користити` (declension slips)
+- `21. Новембар` → `21. новембар`, `22. Август` → `22. август` on the
+  four rows that had them capitalised, matching the other rows and
+  Serbian usage
+- a missing space after the dash in the footer line
+- the e-mail placeholder, where the worksheet offered
+  `ви@факултет.срб/vi@fakultet.rs`; the Latin one is kept so the example
+  stays typable
+
+Not covered by the worksheet, and so **not yet reviewed by a native
+speaker**: the 404 page, the registration form's status messages, and
+the loading/error states. Everything else on the site is his.
+
+Translation is applied client-side, which means search engines index the
+English text.
 
 ## Blog
 

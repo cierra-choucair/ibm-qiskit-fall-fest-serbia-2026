@@ -124,6 +124,8 @@
     var setStatus = function (message, isError) {
       status.textContent = message;
       status.classList.toggle("error", Boolean(isError));
+      // Written in English after load, so i18n has to be told about it
+      if (window.applyI18n) window.applyI18n(status);
     };
 
     form.addEventListener("submit", function (event) {
