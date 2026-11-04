@@ -174,7 +174,7 @@ transliterating back would invent a spelling. Those are listed in
 
 | Cyrillic | Latin |
 | --- | --- |
-| `Сиерра Лунде Шоукаир` | Cierra Lunde Choucair |
+| `Сиерра Лунде Шхоукаир` | Cierra Lunde Choucair |
 | `Линктин` | LinkedIn |
 | `Пајтон` | Python |
 

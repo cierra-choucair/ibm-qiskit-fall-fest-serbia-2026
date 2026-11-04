@@ -20,7 +20,7 @@
    "Qiskit-u" and the brand is never mangled. No list of protected words is
    needed — the two alphabets simply don't collide. The exceptions are the
    handful of names Serbian spells out phonetically (Линктин, Пајтон,
-   Сиерра Лунде Шоукаир); they are listed in LATIN_SPELLING so the Latin
+   Сиерра Лунде Шхоукаир); they are listed in LATIN_SPELLING so the Latin
    says LinkedIn, Python and Cierra Lunde Choucair rather than a
    transliteration of the Cyrillic.
 
@@ -76,12 +76,12 @@ window.I18N = {
     "Sanja Djurdjic Mijin": "Сања Ђурђић Мијин",
     "CQT Serbia": "ЦКТС",
     "Slobodan Cicic": "Слободан Чичић",
-    "Cierra Lunde Choucair": "Сиерра Лунде Шоукаир",
+    "Cierra Lunde Choucair": "Сиерра Лунде Шхоукаир",
     "Sandro Bilobrk": "Сандро Билобрк",
     "Sasha Lazarevic": "Саша Лазаревић",
     "Sanja Djurdjic Mijin on LinkedIn": "Сања Ђурђић Мијин на Линктину",
     "Slobodan Cicic on LinkedIn": "Слободан Чичић на Линктину",
-    "Cierra Lunde Choucair on LinkedIn": "Сиерра Лунде Шоукаир на Линктину",
+    "Cierra Lunde Choucair on LinkedIn": "Сиерра Лунде Шхоукаир на Линктину",
     "Sandro Bilobrk on LinkedIn": "Сандро Билобрк на Линктину",
     "Sasha Lazarevic on LinkedIn": "Саша Лазаревић на Линктину",
 
@@ -105,7 +105,7 @@ window.I18N = {
     "Organizing team": "Организациони тим",
     "Welcome and Serbia’s quantum opportunity": "Добродошлица и квантна прилика за Србију",
     "Sanja Djurdjic Mijin, Cierra Lunde Choucair, Sasha Lazarevic":
-      "Сања Ђурђић Мијин, Сиерра Лунде Шоукаир, Саша Лазаревић",
+      "Сања Ђурђић Мијин, Сиерра Лунде Шхоукаир, Саша Лазаревић",
     "Quantum 101": "Квантно рачунарство 101",
     "Break": "Пауза",
     "All": "Сви",
@@ -291,12 +291,12 @@ window.I18N = {
   /* Names Serbian writes out phonetically in Cyrillic but that keep their
      own spelling in Latin — foreign brands, and people whose name simply
      isn't a Serbian word. Transliterating these back would invent a
-     spelling ("Шоукаир" → "Šoukair"), so the Latin is given here instead.
+     spelling ("Шхоукаир" → "Šhoukair"), so the Latin is given here instead.
      The capture takes any Cyrillic case ending, so "Линктину" becomes
      "LinkedIn-u" — the hyphen style used site-wide. Longest first, so a
      full name wins over any part of it. */
   var LATIN_SPELLING = [
-    ["Сиерра Лунде Шоукаир", "Cierra Lunde Choucair"],
+    ["Сиерра Лунде Шхоукаир", "Cierra Lunde Choucair"],
     ["Линктин", "LinkedIn"],
     ["Пајтон", "Python"],
   ];
