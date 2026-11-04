@@ -19,8 +19,10 @@
    "Qiskit-у" has no Cyrillic in "Qiskit", so it transliterates to
    "Qiskit-u" and the brand is never mangled. No list of protected words is
    needed — the two alphabets simply don't collide. The exceptions are the
-   handful of names Serbian spells out phonetically (Линктин, Пајтон); they
-   are listed in BRANDS so the Latin says LinkedIn and Python.
+   handful of names Serbian spells out phonetically (Линктин, Пајтон,
+   Сиерра Лунде Шоукаир); they are listed in LATIN_SPELLING so the Latin
+   says LinkedIn, Python and Cierra Lunde Choucair rather than a
+   transliteration of the Cyrillic.
 
    Translations: Slobodan Cicic's worksheet of 14 October 2026, applied
    verbatim except where noted in README ("Language toggle"). To fix
@@ -74,11 +76,12 @@ window.I18N = {
     "Sanja Djurdjic Mijin": "Сања Ђурђић Мијин",
     "CQT Serbia": "ЦКТС",
     "Slobodan Cicic": "Слободан Чичић",
+    "Cierra Lunde Choucair": "Сиерра Лунде Шоукаир",
     "Sandro Bilobrk": "Сандро Билобрк",
     "Sasha Lazarevic": "Саша Лазаревић",
     "Sanja Djurdjic Mijin on LinkedIn": "Сања Ђурђић Мијин на Линктину",
     "Slobodan Cicic on LinkedIn": "Слободан Чичић на Линктину",
-    "Cierra Lunde Choucair on LinkedIn": "Cierra Lunde Choucair на Линктину",
+    "Cierra Lunde Choucair on LinkedIn": "Сиерра Лунде Шоукаир на Линктину",
     "Sandro Bilobrk on LinkedIn": "Сандро Билобрк на Линктину",
     "Sasha Lazarevic on LinkedIn": "Саша Лазаревић на Линктину",
 
@@ -102,7 +105,7 @@ window.I18N = {
     "Organizing team": "Организациони тим",
     "Welcome and Serbia’s quantum opportunity": "Добродошлица и квантна прилика за Србију",
     "Sanja Djurdjic Mijin, Cierra Lunde Choucair, Sasha Lazarevic":
-      "Сања Ђурђић Мијин, Cierra Lunde Choucair, Саша Лазаревић",
+      "Сања Ђурђић Мијин, Сиерра Лунде Шоукаир, Саша Лазаревић",
     "Quantum 101": "Квантно рачунарство 101",
     "Break": "Пауза",
     "All": "Сви",
@@ -285,10 +288,18 @@ window.I18N = {
     "с":"s","т":"t","ћ":"ć","у":"u","ф":"f","х":"h","ц":"c","ч":"č","џ":"dž","ш":"š"
   };
 
-  /* Names Serbian writes phonetically in Cyrillic but that keep their own
-     spelling in Latin. The capture takes any Cyrillic case ending, so
-     "Линктину" becomes "LinkedIn-u" — the hyphen style used site-wide. */
-  var BRANDS = [["Линктин", "LinkedIn"], ["Пајтон", "Python"]];
+  /* Names Serbian writes out phonetically in Cyrillic but that keep their
+     own spelling in Latin — foreign brands, and people whose name simply
+     isn't a Serbian word. Transliterating these back would invent a
+     spelling ("Шоукаир" → "Šoukair"), so the Latin is given here instead.
+     The capture takes any Cyrillic case ending, so "Линктину" becomes
+     "LinkedIn-u" — the hyphen style used site-wide. Longest first, so a
+     full name wins over any part of it. */
+  var LATIN_SPELLING = [
+    ["Сиерра Лунде Шоукаир", "Cierra Lunde Choucair"],
+    ["Линктин", "LinkedIn"],
+    ["Пајтон", "Python"],
+  ];
 
   function isUpper(ch) {
     return !!ch && ch !== ch.toLowerCase() && ch === ch.toUpperCase();
@@ -311,14 +322,14 @@ window.I18N = {
 
   function toLatin(text) {
     if (!text) return text;
-    for (var i = 0; i < BRANDS.length; i++) {
+    for (var i = 0; i < LATIN_SPELLING.length; i++) {
       text = text.replace(
-        new RegExp(BRANDS[i][0] + "([\\u0400-\\u04FF]*)", "g"),
+        new RegExp(LATIN_SPELLING[i][0] + "([\\u0400-\\u04FF]*)", "g"),
         (function (name) {
           return function (_, ending) {
             return name + (ending ? "-" + letters(ending) : "");
           };
-        })(BRANDS[i][1])
+        })(LATIN_SPELLING[i][1])
       );
     }
     return letters(text);

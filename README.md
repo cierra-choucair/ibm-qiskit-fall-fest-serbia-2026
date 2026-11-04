@@ -166,9 +166,22 @@ only a human knows which; from Cyrillic there is no such question.
 It also means Latin inside a Serbian string survives untouched: `Qiskit`
 has no Cyrillic in it, so `Qiskit-у` becomes `Qiskit-u` and the brand is
 never mangled. Markup, URLs, `<code>` and e-mail addresses are safe for
-the same reason — **no list of protected words is needed.** The only
-exceptions are names Serbian spells out phonetically; `Линктин` and
-`Пајтон` are listed in `BRANDS` so the Latin reads LinkedIn and Python.
+the same reason — **no list of protected words is needed.**
+
+The only exceptions are names Serbian spells out phonetically, where
+transliterating back would invent a spelling. Those are listed in
+`LATIN_SPELLING`:
+
+| Cyrillic | Latin |
+| --- | --- |
+| `Сиерра Лунде Шоукаир` | Cierra Lunde Choucair |
+| `Линктин` | LinkedIn |
+| `Пајтон` | Python |
+
+Case endings still work: `Линктину` becomes `LinkedIn-u`. Longest entry
+first, so a full name wins over any part of it. The other organizers
+need no entry — their names are Serbian, so `Ђурђић` ↔ `Đurđić` round
+trips on its own.
 
 ### Two Serbian strings for one English one
 
