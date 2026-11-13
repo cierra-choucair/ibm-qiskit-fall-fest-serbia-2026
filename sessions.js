@@ -88,7 +88,7 @@ window.SESSIONS = [
     id: "quantum-cryptography-security",
     time: "15:30–16:30",
     title: "Quantum Security and Post Quantum Cryptography",
-    lead: "Speaker to be confirmed",
+    lead: "Sanja Djurdjic Mijin",
     html:
       "<p>How does quantum computing change the way we think about " +
       "protecting information? This session will introduce the risks that " +
@@ -99,7 +99,7 @@ window.SESSIONS = [
       "designed to resist quantum attacks on classical computers. The " +
       "discussion will connect these ideas to practical security " +
       "challenges and applications in telecommunications.</p>",
-    speakers: [{ tba: true }],
+    speakers: [P.sanja],
   },
   {
     id: "quantum-computing-gaming",
