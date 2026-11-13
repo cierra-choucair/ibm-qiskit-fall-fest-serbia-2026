@@ -112,6 +112,7 @@ window.I18N = {
     "Qiskit 101: Getting started with quantum programming":
       "Qiskit 101: Први кораци у квантном програмирању",
     "Claudia Zendejas-Morales (virtual)": "Claudia Zendejas-Morales (онлајн)",
+    "Ema Puljak (virtual)": "Ема Пуљак (онлајн)",
     "Lunch and networking": "Ручак и повезивање",
     "Quantum Security and Post Quantum Cryptography":
       "Квантна безбедност и постквантна криптографија",
@@ -194,6 +195,10 @@ window.I18N = {
     "Explore how the ideas behind quantum computing translate into code using Qiskit, an open-source toolkit for quantum programming. This introductory session will walk through the building blocks of quantum circuits and explain how to construct, run and interpret simple examples. Participants will become familiar with the basic workflow of quantum programming and how measurement results relate to the circuits they create. The session will provide a starting point for further learning and experimentation ahead of the hackathon.":
       "Истражите како се идеје квантног рачунарства преводе у код уз Qiskit, алат отвореног кода за квантно програмирање. Ова уводна сесија пролази кроз градивне елементе квантних кола и објашњава како да их саставите, покренете и протумачите на једноставним примерима. Учесници ће се упознати са основним током рада у квантном програмирању и са тим како се резултати мерења односе на кола која праве. Сесија је полазна тачка за даље учење и експериментисање пред хакатон.",
     "Joining virtually": "Учествује онлајн",
+    /* Not from the worksheet — new since it was written. */
+    "Ema Puljak": "Ема Пуљак",
+    "Ema Puljak on LinkedIn": "Ема Пуљак на Линктину",
+    "Research Scientist at CERN": "Истраживачица у ЦЕРН-у",
     "Quantum Security and Post Quantum Cryptography · Qiskit Fall Fest Serbia 2026":
       "Квантна безбедност и постквантна криптографија · Qiskit Fall Fest Serbia 2026",
     "How does quantum computing change the way we think about protecting information? This session will introduce the risks that future quantum computers could pose to widely used cryptographic systems and explain the purpose of post-quantum cryptography. Participants will explore the distinction between quantum approaches to secure communication and cryptographic algorithms designed to resist quantum attacks on classical computers. The discussion will connect these ideas to practical security challenges and applications in telecommunications.":

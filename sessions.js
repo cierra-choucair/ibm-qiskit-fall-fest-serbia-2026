@@ -18,7 +18,7 @@ var ORGANIZING_TEAM = window.ORGANIZERS || [];
 window.SESSIONS = [
   {
     id: "welcome",
-    time: "08:30–09:15",
+    time: "10:00–11:00",
     title: "Welcome and Serbia’s quantum opportunity",
     lead: "Sanja Djurdjic Mijin, Cierra Lunde Choucair, Sasha Lazarevic",
     html:
@@ -34,23 +34,6 @@ window.SESSIONS = [
       "opportunities to develop ideas, meet collaborators and get " +
       "involved.</p>",
     speakers: [P.sanja, P.cierra, P.sasha],
-  },
-  {
-    id: "quantum-101",
-    time: "09:15–10:45",
-    title: "Quantum 101",
-    lead: "Sanja Djurdjic Mijin",
-    html:
-      "<p>What makes a quantum computer different from a classical " +
-      "computer? This introductory session will explore qubits, " +
-      "superposition, entanglement and measurement, building a foundation " +
-      "for understanding how quantum computation works. Participants will " +
-      "learn how quantum gates and circuits bring these concepts " +
-      "together, while gaining perspective on the possibilities and " +
-      "limitations of quantum computing. The session is designed to make " +
-      "the core ideas approachable for those encountering the subject for " +
-      "the first time.</p>",
-    speakers: [P.sanja],
   },
   {
     id: "qiskit-101",
@@ -77,8 +60,33 @@ window.SESSIONS = [
     ],
   },
   {
+    id: "quantum-101",
+    time: "14:00–15:30",
+    title: "Quantum 101",
+    lead: "Ema Puljak, Research Scientist at CERN (virtual)",
+    html:
+      "<p>What makes a quantum computer different from a classical " +
+      "computer? This introductory session will explore qubits, " +
+      "superposition, entanglement and measurement, building a foundation " +
+      "for understanding how quantum computation works. Participants will " +
+      "learn how quantum gates and circuits bring these concepts " +
+      "together, while gaining perspective on the possibilities and " +
+      "limitations of quantum computing. The session is designed to make " +
+      "the core ideas approachable for those encountering the subject for " +
+      "the first time.</p>",
+    speakers: [
+      {
+        name: "Ema Puljak",
+        role: "Joining virtually",
+        org: "Research Scientist at CERN",
+        photo: "/assets/ema_headshot.jpg",
+        linkedin: "https://www.linkedin.com/in/ema-puljak/",
+      },
+    ],
+  },
+  {
     id: "quantum-cryptography-security",
-    time: "14:00–15:00",
+    time: "15:30–16:30",
     title: "Quantum Security and Post Quantum Cryptography",
     lead: "Speaker to be confirmed",
     html:
@@ -95,7 +103,7 @@ window.SESSIONS = [
   },
   {
     id: "quantum-computing-gaming",
-    time: "15:00–16:00",
+    time: "16:45–17:45",
     title: "Quantum Computing and Gaming",
     lead: "Speaker to be confirmed",
     html:
@@ -110,7 +118,7 @@ window.SESSIONS = [
   },
   {
     id: "questions-and-closing",
-    time: "16:00–16:45",
+    time: "17:45–18:30",
     title: "Questions, next steps and closing remarks",
     lead: "Organizing team",
     html:
