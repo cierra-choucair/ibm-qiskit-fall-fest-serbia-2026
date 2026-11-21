@@ -105,7 +105,7 @@ window.SESSIONS = [
     id: "quantum-computing-gaming",
     time: "16:45–17:45",
     title: "Quantum Computing and Gaming",
-    lead: "Speaker to be confirmed",
+    lead: "Daniel Bultrini, Moth Quantum",
     html:
       "<p>Games offer a creative way to explore quantum computing and " +
       "make unfamiliar concepts tangible. This session will examine how " +
@@ -114,7 +114,14 @@ window.SESSIONS = [
       "Participants will explore the possibilities of using quantum " +
       "computation within games, alongside using games to explain quantum " +
       "concepts.</p>",
-    speakers: [{ tba: true }],
+    speakers: [
+      {
+        name: "Daniel Bultrini",
+        org: "Moth Quantum",
+        photo: "/assets/daniel_headshot.jpg",
+        linkedin: "https://www.linkedin.com/in/daniel-bultrini/",
+      },
+    ],
   },
   {
     id: "questions-and-closing",

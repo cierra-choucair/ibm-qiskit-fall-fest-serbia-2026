@@ -119,8 +119,9 @@ window.I18N = {
     "Speaker to be confirmed": "Предавач треба да буде потврђен",
     "Quantum Computing and Gaming": "Квантно рачунарство и видео игре",
     "Questions, next steps and closing remarks": "Питања, наредни кораци и затварање",
-    "Click a session for details. Speakers and session leads to be confirmed soon.":
-      "Кликните на сесију за детаље. Предавачи и водитељи сесија биће ускоро потврђени.",
+    /* Shortened once every session had a named speaker; the Serbian is
+       Slobodan's own sentence with its second half dropped. */
+    "Click a session for details.": "Кликните на сесију за детаље.",
 
     /* ── The challenge ── */
     "About the challenge": "О изазову",
@@ -199,6 +200,9 @@ window.I18N = {
     "Ema Puljak": "Ема Пуљак",
     "Ema Puljak on LinkedIn": "Ема Пуљак на Линктину",
     "Research Scientist at CERN": "Истраживачица у ЦЕРН-у",
+    /* Name and company stay Latin, as the worksheet has them for
+       Claudia Zendejas-Morales and IBM Quantum. */
+    "Daniel Bultrini on LinkedIn": "Daniel Bultrini на Линктину",
     "Quantum Security and Post Quantum Cryptography · Qiskit Fall Fest Serbia 2026":
       "Квантна безбедност и постквантна криптографија · Qiskit Fall Fest Serbia 2026",
     "How does quantum computing change the way we think about protecting information? This session will introduce the risks that future quantum computers could pose to widely used cryptographic systems and explain the purpose of post-quantum cryptography. Participants will explore the distinction between quantum approaches to secure communication and cryptographic algorithms designed to resist quantum attacks on classical computers. The discussion will connect these ideas to practical security challenges and applications in telecommunications.":
